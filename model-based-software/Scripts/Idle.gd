@@ -1,8 +1,10 @@
 extends State
 class_name Idle
 
+
+
 func Entry():
-	pass
+	print("Must have been the wind")
 
 
 func Maintain():
