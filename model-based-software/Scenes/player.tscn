@@ -7,10 +7,10 @@ size = Vector2(45, 39)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_v0iea"]
 
-[node name="Player" type="CharacterBody2D" unique_id=1364549657]
+[node name="Player" type="CharacterBody2D" unique_id=1364549657 groups=["Player"]]
 script = ExtResource("1_v0iea")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1896276549]
+[node name="PlayerCollider" type="CollisionShape2D" parent="." unique_id=1896276549]
 position = Vector2(19.5, 21.5)
 shape = SubResource("RectangleShape2D_f60y1")
 
