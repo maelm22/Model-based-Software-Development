@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://db0aa4o4lgilq"]
 
+[ext_resource type="Script" uid="uid://ty7xsnltp7dq" path="res://Scripts/guard.gd" id="1_p570l"]
+[ext_resource type="Script" uid="uid://bw2sn7w43knxs" path="res://Scripts/line_of_sight.gd" id="2_smm0d"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5g5w7"]
 height = 52.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5g5w7"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_smm0d"]
+
 [node name="Guard" type="CharacterBody2D" unique_id=1529982651 groups=["Guard"]]
+script = ExtResource("1_p570l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1915122853]
 shape = SubResource("CapsuleShape2D_5g5w7")
@@ -16,3 +22,13 @@ scale = Vector2(15, 40)
 texture = SubResource("CanvasTexture_5g5w7")
 
 [node name="Movement" type="Node" parent="." unique_id=214456729]
+
+[node name="Line_of_sight" type="ShapeCast2D" parent="." unique_id=1598524567]
+scale = Vector2(16.135, 16.135)
+shape = SubResource("CircleShape2D_smm0d")
+target_position = Vector2(-0.21141648, 0)
+max_results = 1
+script = ExtResource("2_smm0d")
+
+[connection signal="sees_not" from="Line_of_sight" to="." method="_on_line_of_sight_sees_not"]
+[connection signal="sees_player" from="Line_of_sight" to="." method="_on_line_of_sight_sees_player"]

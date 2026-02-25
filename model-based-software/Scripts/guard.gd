@@ -7,9 +7,11 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_line_of_sight_sees_player() -> void:
-	player_vision = true
 
 
 func _on_line_of_sight_sees_not() -> void:
 	player_vision = false
+
+
+func _on_line_of_sight_sees_player() -> void:
+	player_vision = true
