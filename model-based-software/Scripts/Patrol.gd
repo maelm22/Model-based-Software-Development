@@ -9,7 +9,7 @@ var current_destanation_index = 0
 var current_destanation: Vector2
 
 func Entry():
-	guard = get_tree().get_root().find_node("Guard")
+	guard = get_tree().get_nodes_in_group("Guard")[0]
 	current_destanation = patrol_points[current_destanation_index]
 
 func Maintain():

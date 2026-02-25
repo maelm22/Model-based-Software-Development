@@ -7,8 +7,8 @@ var speed = 150
 
 
 func Entry():
-	guard = get_tree().get_root().find_node("Guard")[0]
-	pursuit_target = get_tree().get_root().find_node("Player")[0]
+	guard = get_tree().get_nodes_in_group("Guard")[0]
+	pursuit_target = get_tree().get_nodes_in_group("Player")[0]
 	
 
 func Maintain():

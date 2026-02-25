@@ -42,3 +42,10 @@ func SetStart(startState: String):
 		StartState = States.get(startState)
 		#print(StartState)
 	return self
+
+func Build():
+	for state in States.keys():
+		add_child(States.get(state))
+		if States.get(state) is StateMachine:
+			States.get(state).Build()
+	

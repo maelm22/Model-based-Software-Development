@@ -5,19 +5,22 @@ var baseMachine: StateMachine
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	baseMachine = StateMachine.new()
+	add_child(baseMachine)
+	
 	baseMachine\
 	.AddState("Guard", StateMachine.new()\
 		.AddState("Patrol", Patrol.new())\
 		.AddState("Idle", Idle.new())\
 		.AddState("Pursuit", Pursuit.new())\
-		.AddTransition("Patrol", "Run", Callable(self, "HelloRun"))\
+		.AddTransition("Patrol", "Pursuit", Callable(self, "HelloRun"))\
 		.AddTransition("Idle", "Patrol", Callable(self, "HelloPatrol"))\
-		.AddTransition("Run", "Idle", Callable(self, "HelloIdle"))\
+		#.AddTransition("Pursuit", "Idle", Callable(self, "HelloIdle"))\
 		.SetStart("Idle")
 		)\
 		.SetStart("Guard")
 	
 	
+	baseMachine.Build()
 	
 	baseMachine.Entry()
 

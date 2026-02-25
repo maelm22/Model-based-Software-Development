@@ -1,13 +1,11 @@
-[gd_scene format=3 uid="uid://bxhgoaj3tvgbe"]
-
-[ext_resource type="Script" uid="uid://bvbj4lhlijx4b" path="res://Scripts/Guard/movement.gd" id="1_p570l"]
+[gd_scene format=3 uid="uid://db0aa4o4lgilq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5g5w7"]
 height = 52.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5g5w7"]
 
-[node name="Guard" type="CharacterBody2D" unique_id=1529982651]
+[node name="Guard" type="CharacterBody2D" unique_id=1529982651 groups=["Guard"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1915122853]
 shape = SubResource("CapsuleShape2D_5g5w7")
@@ -18,4 +16,3 @@ scale = Vector2(15, 40)
 texture = SubResource("CanvasTexture_5g5w7")
 
 [node name="Movement" type="Node" parent="." unique_id=214456729]
-script = ExtResource("1_p570l")
