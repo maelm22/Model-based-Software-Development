@@ -25,6 +25,7 @@ func Exit():
 	
 
 func AddState(StateName: String, state:State):
+	print(state)
 	state.Name = StateName
 	States.get_or_add(StateName, state)
 	
@@ -33,10 +34,11 @@ func AddState(StateName: String, state:State):
 func AddTransition(from: String, to: String, condition:Callable):
 	Transitions.get_or_add(
 		from, Transition.new(States.get(from), States.get(to), condition))
-	print(Transitions.get(from))
+	
 	return self 
 
 func SetStart(startState: String):
 	if States.has(startState):
 		StartState = States.get(startState)
 		#print(StartState)
+	return self

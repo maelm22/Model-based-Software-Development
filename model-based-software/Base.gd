@@ -6,11 +6,16 @@ var baseMachine: StateMachine
 func _ready() -> void:
 	baseMachine = StateMachine.new()
 	baseMachine\
+	.AddState("Guard", StateMachine.new()\
 		.AddState("Patrol", Patrol.new())\
 		.AddState("Idle", Idle.new())\
-		.AddTransition("Patrol", "Idle", Callable(self, "HelloIdle"))\
-		.AddTransition("Idle", "Patrol", Callable(self, "Hello"))\
+		.AddState("Run", Run.new())\
+		.AddTransition("Patrol", "Run", Callable(self, "HelloRun"))\
+		.AddTransition("Idle", "Patrol", Callable(self, "HelloPatrol"))\
+		.AddTransition("Run", "Idle", Callable(self, "HelloIdle"))\
 		.SetStart("Idle")
+		)\
+		.SetStart("Guard")
 	
 	
 	
@@ -22,11 +27,16 @@ func _process(delta: float) -> void:
 	baseMachine.Maintain()
 	
 
-func Hello() -> bool:
+func HelloPatrol() -> bool:
 	print("Hello Patrol")
 	return true
 
 
 func HelloIdle()->bool:
 	print("Hello Idle")
+	return true
+	
+
+func HelloRun()->bool:
+	print("Hello Run")
 	return true
