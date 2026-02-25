@@ -2,6 +2,9 @@ extends Node2D
 
 var baseMachine: StateMachine
 
+@onready
+var Guard = $".."
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	baseMachine = StateMachine.new()
@@ -14,7 +17,7 @@ func _ready() -> void:
 		.AddState("Pursuit", Pursuit.new())\
 		.AddTransition("Patrol", "Pursuit", Callable(self, "HelloRun"))\
 		.AddTransition("Idle", "Patrol", Callable(self, "HelloPatrol"))\
-		#.AddTransition("Pursuit", "Idle", Callable(self, "HelloIdle"))\
+		.AddTransition("Pursuit", "Patrol", Callable(self, "HelloPatrol"))
 		.SetStart("Idle")
 		)\
 		.SetStart("Guard")
@@ -32,7 +35,7 @@ func _process(delta: float) -> void:
 
 func HelloPatrol() -> bool:
 	print("Hello Patrol")
-	return true
+	return !Guard.player_vision
 
 
 func HelloIdle()->bool:
@@ -42,4 +45,4 @@ func HelloIdle()->bool:
 
 func HelloRun()->bool:
 	print("Hello Run")
-	return true
+	return Guard.player_vision

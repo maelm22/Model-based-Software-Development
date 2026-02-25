@@ -2,9 +2,7 @@ extends CharacterBody2D
 
 var player_vision = false
 
-func _process(delta: float) -> void:
-	print_debug(player_vision)
-	pass
+
 
 
 
