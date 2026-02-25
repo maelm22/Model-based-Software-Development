@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://db0aa4o4lgilq"]
 
-[ext_resource type="Script" uid="uid://ty7xsnltp7dq" path="res://Scripts/guard.gd" id="1_p570l"]
+[ext_resource type="Script" uid="uid://ty7xsnltp7dq" path="res://Scripts/Guard/guard.gd" id="1_p570l"]
 [ext_resource type="Script" uid="uid://bk8bqsfdlbwtg" path="res://Base.gd" id="1_smm0d"]
-[ext_resource type="Script" path="res://Scripts/line_of_sight.gd" id="2_smm0d"]
+[ext_resource type="Script" uid="uid://bw2sn7w43knxs" path="res://Scripts/Guard/line_of_sight.gd" id="2_smm0d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5g5w7"]
 height = 52.0
