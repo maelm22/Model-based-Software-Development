@@ -9,7 +9,7 @@ func _ready() -> void:
 	.AddState("Guard", StateMachine.new()\
 		.AddState("Patrol", Patrol.new())\
 		.AddState("Idle", Idle.new())\
-		.AddState("Run", Run.new())\
+		.AddState("Pursuit", Pursuit.new())\
 		.AddTransition("Patrol", "Run", Callable(self, "HelloRun"))\
 		.AddTransition("Idle", "Patrol", Callable(self, "HelloPatrol"))\
 		.AddTransition("Run", "Idle", Callable(self, "HelloIdle"))\
