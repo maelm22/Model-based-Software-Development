@@ -56,8 +56,8 @@ class stateMachine extends state:
 		CurrentState.Exit()
 		
 	
-	func AddState(name: String, State:state) -> state:
-		States.get_or_add(name, State)
+	func AddState(name: String, states:state) -> state:
+		States.get_or_add(name, states)
 		return self
 
 	func AddTransition(from: String, to: String, condition:Callable):
