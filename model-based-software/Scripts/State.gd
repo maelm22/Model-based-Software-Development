@@ -1,5 +1,6 @@
+@abstract
 extends Node
-
+class_name State
 
 @abstract
 class state:
@@ -18,7 +19,7 @@ class state:
 	func Exit()
 	
 
-class Transition:
+class transition:
 	var Origin:state
 	var Destination:state
 	
@@ -31,12 +32,12 @@ class Transition:
 		
 	
 
-class StateMachine extends state:
+class stateMachine extends state:
 	var StartState:state
 	var CurrentState:state
 	var NextState:state
 	var States:Dictionary[String, state]
-	var Transitions:Dictionary[String, Transition]
+	var Transitions:Dictionary[String, transition]
 	
 	func Entry():
 		CurrentState = StartState
@@ -60,5 +61,18 @@ class StateMachine extends state:
 		return self
 
 	func AddTransition(from: String, to: String, condition:Callable):
-		Transitions.get_or_add(from, Transition.new(States.get(from), States.get(to), condition))
-		return self
+		Transitions.get_or_add(from, transition.new(States.get(from), States.get(to), condition))
+		return self 
+		
+		
+
+var Name:String
+@abstract
+func Entry()
+
+
+@abstract
+func Maintain()
+
+@abstract
+func Exit()
