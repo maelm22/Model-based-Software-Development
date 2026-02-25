@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cov0k1cgickxf"]
+[gd_scene format=3 uid="uid://bxhgoaj3tvgbe"]
+
+[ext_resource type="Script" uid="uid://bvbj4lhlijx4b" path="res://Scripts/Guard/movement.gd" id="1_p570l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5g5w7"]
 height = 52.0
@@ -14,3 +16,6 @@ shape = SubResource("CapsuleShape2D_5g5w7")
 position = Vector2(0.5, 2.3841858e-07)
 scale = Vector2(15, 40)
 texture = SubResource("CanvasTexture_5g5w7")
+
+[node name="Movement" type="Node" parent="." unique_id=214456729]
+script = ExtResource("1_p570l")
