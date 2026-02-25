@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bfmfujktv17cq"]
+
+[ext_resource type="PackedScene" uid="uid://cov0k1cgickxf" path="res://Scenes/guard.tscn" id="1_ci6au"]
+
+[node name="Map" type="Node2D" unique_id=598654300]
+
+[node name="Guard" parent="." unique_id=1529982651 instance=ExtResource("1_ci6au")]
