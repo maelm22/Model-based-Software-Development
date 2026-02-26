@@ -1,13 +1,12 @@
 extends Node2D
 
-var baseMachine: StateMachine
+var baseMachine: StateMachine = StateMachine.new()
 
 @onready
 var Guard = $".."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	baseMachine = StateMachine.new()
 	add_child(baseMachine)
 	
 	baseMachine\
@@ -20,10 +19,8 @@ func _ready() -> void:
 		.AddTransition("Pursuit", "Patrol", Callable(self, "HelloPatrol"))
 		.SetStart("Idle")
 		)\
-		.SetStart("Guard")
-	
-	
-	baseMachine.Build()
+		.SetStart("Guard")\
+		.Build()
 	
 	baseMachine.Entry()
 

@@ -5,7 +5,7 @@ var StartState:State
 var CurrentState:State
 var NextState:State
 var States:Dictionary[String, State]  = {}
-var Transitions:Dictionary[String, Transition]  = {}
+var Transitions:Dictionary[String, Array]  = {}
 
 func Entry():
 	CurrentState = StartState
@@ -13,11 +13,13 @@ func Entry():
 
 func Maintain():
 	CurrentState.Maintain()
-	if Transitions.has(CurrentState.Name) and Transitions.get(CurrentState.Name).Condition.call():
-		NextState = Transitions.get(CurrentState.Name).Destination
-		CurrentState.Exit()
-		CurrentState = NextState
-		CurrentState.Entry()
+	if Transitions.has(CurrentState.Name):
+		for transition in Transitions.get(CurrentState.Name):
+			if transition.Condition.call():
+				NextState = transition.Destination
+				CurrentState.Exit()
+				CurrentState = NextState
+				CurrentState.Entry()
 	
 
 func Exit():
@@ -31,11 +33,16 @@ func AddState(StateName: String, state:State):
 	
 	return self
 
-func AddTransition(from: String, to: String, condition:Callable):
-	Transitions.get_or_add(
-		from, Transition.new(States.get(from), States.get(to), condition))
-	
-	return self 
+func AddTransition(from: String, to: String, condition: Callable):
+	if States.has(from) and States.has(to):
+		if Transitions.has(from):
+			Transitions.get(from).append(Transition.new(States.get(from), States.get(to), condition))
+		else:
+			Transitions.get_or_add(
+				from, [Transition.new(States.get(from), States.get(to), condition)]
+			)
+	return self
+
 
 func SetStart(startState: String):
 	if States.has(startState):
