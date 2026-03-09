@@ -1,0 +1,36 @@
+grammar org.xtext.example.statedsl.StateDSL with org.eclipse.xtext.common.Terminals
+
+generate stateDSL "http://www.xtext.org/example/statedsl/StateDSL"
+
+Domainmodel:
+    (elements+=StateMachine)*;
+
+
+StateMachine:
+    'StateMachine' name=ID '{' 
+        'states' '=' states+= (AState)+ ','
+        'transitions' '=' transitions+= (Transition)* ','
+        'start' '=' start=State 
+    '}';
+
+
+    
+    
+AState:
+	State | StateMachine
+;    
+
+State:
+   'State' name=ID '{' '}'
+    
+    ;
+
+Condition:
+    'condition' name=ID ;
+
+Transition:
+    'transition' name=ID '{' 
+        from=State 
+        to=State 
+        condition=Condition 
+    '}';
