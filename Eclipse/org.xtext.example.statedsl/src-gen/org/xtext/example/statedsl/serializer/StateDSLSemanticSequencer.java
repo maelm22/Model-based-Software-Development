@@ -148,9 +148,9 @@ public class StateDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTransitionAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getTransitionAccess().getFromAStateParserRuleCall_3_0(), semanticObject.getFrom());
-		feeder.accept(grammarAccess.getTransitionAccess().getToAStateParserRuleCall_4_0(), semanticObject.getTo());
-		feeder.accept(grammarAccess.getTransitionAccess().getConditionConditionParserRuleCall_5_0(), semanticObject.getCondition());
+		feeder.accept(grammarAccess.getTransitionAccess().getFromAStateParserRuleCall_5_0(), semanticObject.getFrom());
+		feeder.accept(grammarAccess.getTransitionAccess().getToAStateParserRuleCall_8_0(), semanticObject.getTo());
+		feeder.accept(grammarAccess.getTransitionAccess().getConditionConditionParserRuleCall_11_0(), semanticObject.getCondition());
 		feeder.finish();
 	}
 	

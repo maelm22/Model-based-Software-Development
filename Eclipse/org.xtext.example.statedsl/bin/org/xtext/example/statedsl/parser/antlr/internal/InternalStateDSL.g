@@ -418,12 +418,20 @@ ruleTransition returns [EObject current=null]
 		{
 			newLeafNode(otherlv_2, grammarAccess.getTransitionAccess().getLeftCurlyBracketKeyword_2());
 		}
+		otherlv_3='from'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getTransitionAccess().getFromKeyword_3());
+		}
+		otherlv_4='='
+		{
+			newLeafNode(otherlv_4, grammarAccess.getTransitionAccess().getEqualsSignKeyword_4());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTransitionAccess().getFromAStateParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getTransitionAccess().getFromAStateParserRuleCall_5_0());
 				}
-				lv_from_3_0=ruleAState
+				lv_from_5_0=ruleAState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTransitionRule());
@@ -431,18 +439,26 @@ ruleTransition returns [EObject current=null]
 					set(
 						$current,
 						"from",
-						lv_from_3_0,
+						lv_from_5_0,
 						"org.xtext.example.statedsl.StateDSL.AState");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		otherlv_6='to'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getTransitionAccess().getToKeyword_6());
+		}
+		otherlv_7='='
+		{
+			newLeafNode(otherlv_7, grammarAccess.getTransitionAccess().getEqualsSignKeyword_7());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTransitionAccess().getToAStateParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getTransitionAccess().getToAStateParserRuleCall_8_0());
 				}
-				lv_to_4_0=ruleAState
+				lv_to_8_0=ruleAState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTransitionRule());
@@ -450,18 +466,26 @@ ruleTransition returns [EObject current=null]
 					set(
 						$current,
 						"to",
-						lv_to_4_0,
+						lv_to_8_0,
 						"org.xtext.example.statedsl.StateDSL.AState");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		otherlv_9='condition'
+		{
+			newLeafNode(otherlv_9, grammarAccess.getTransitionAccess().getConditionKeyword_9());
+		}
+		otherlv_10='='
+		{
+			newLeafNode(otherlv_10, grammarAccess.getTransitionAccess().getEqualsSignKeyword_10());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTransitionAccess().getConditionConditionParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getTransitionAccess().getConditionConditionParserRuleCall_11_0());
 				}
-				lv_condition_5_0=ruleCondition
+				lv_condition_11_0=ruleCondition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTransitionRule());
@@ -469,15 +493,15 @@ ruleTransition returns [EObject current=null]
 					set(
 						$current,
 						"condition",
-						lv_condition_5_0,
+						lv_condition_11_0,
 						"org.xtext.example.statedsl.StateDSL.Condition");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_6='}'
+		otherlv_12='}'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getTransitionAccess().getRightCurlyBracketKeyword_6());
+			newLeafNode(otherlv_12, grammarAccess.getTransitionAccess().getRightCurlyBracketKeyword_12());
 		}
 	)
 ;

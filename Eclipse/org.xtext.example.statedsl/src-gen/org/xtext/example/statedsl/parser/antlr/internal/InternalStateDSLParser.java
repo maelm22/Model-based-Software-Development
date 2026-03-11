@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalStateDSLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'StateMachine'", "'{'", "'states'", "'='", "'['", "']'", "','", "'transitions'", "'start'", "'}'", "'State'", "'Condition'", "'Transition'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'StateMachine'", "'{'", "'states'", "'='", "'['", "']'", "','", "'transitions'", "'start'", "'}'", "'State'", "'Condition'", "'Transition'", "'from'", "'to'", "'condition'"
     };
     public static final int RULE_STRING=6;
     public static final int RULE_SL_COMMENT=8;
@@ -38,10 +38,13 @@ public class InternalStateDSLParser extends AbstractInternalAntlrParser {
     public static final int RULE_ID=4;
     public static final int RULE_WS=9;
     public static final int RULE_ANY_OTHER=10;
+    public static final int T__26=26;
     public static final int RULE_INT=5;
     public static final int T__22=22;
     public static final int RULE_ML_COMMENT=7;
     public static final int T__23=23;
+    public static final int T__24=24;
+    public static final int T__25=25;
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -906,30 +909,36 @@ public class InternalStateDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTransition"
-    // InternalStateDSL.g:387:1: ruleTransition returns [EObject current=null] : (otherlv_0= 'Transition' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_from_3_0= ruleAState ) ) ( (lv_to_4_0= ruleAState ) ) ( (lv_condition_5_0= ruleCondition ) ) otherlv_6= '}' ) ;
+    // InternalStateDSL.g:387:1: ruleTransition returns [EObject current=null] : (otherlv_0= 'Transition' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'from' otherlv_4= '=' ( (lv_from_5_0= ruleAState ) ) otherlv_6= 'to' otherlv_7= '=' ( (lv_to_8_0= ruleAState ) ) otherlv_9= 'condition' otherlv_10= '=' ( (lv_condition_11_0= ruleCondition ) ) otherlv_12= '}' ) ;
     public final EObject ruleTransition() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token lv_name_1_0=null;
         Token otherlv_2=null;
+        Token otherlv_3=null;
+        Token otherlv_4=null;
         Token otherlv_6=null;
-        EObject lv_from_3_0 = null;
+        Token otherlv_7=null;
+        Token otherlv_9=null;
+        Token otherlv_10=null;
+        Token otherlv_12=null;
+        EObject lv_from_5_0 = null;
 
-        EObject lv_to_4_0 = null;
+        EObject lv_to_8_0 = null;
 
-        EObject lv_condition_5_0 = null;
+        EObject lv_condition_11_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalStateDSL.g:393:2: ( (otherlv_0= 'Transition' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_from_3_0= ruleAState ) ) ( (lv_to_4_0= ruleAState ) ) ( (lv_condition_5_0= ruleCondition ) ) otherlv_6= '}' ) )
-            // InternalStateDSL.g:394:2: (otherlv_0= 'Transition' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_from_3_0= ruleAState ) ) ( (lv_to_4_0= ruleAState ) ) ( (lv_condition_5_0= ruleCondition ) ) otherlv_6= '}' )
+            // InternalStateDSL.g:393:2: ( (otherlv_0= 'Transition' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'from' otherlv_4= '=' ( (lv_from_5_0= ruleAState ) ) otherlv_6= 'to' otherlv_7= '=' ( (lv_to_8_0= ruleAState ) ) otherlv_9= 'condition' otherlv_10= '=' ( (lv_condition_11_0= ruleCondition ) ) otherlv_12= '}' ) )
+            // InternalStateDSL.g:394:2: (otherlv_0= 'Transition' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'from' otherlv_4= '=' ( (lv_from_5_0= ruleAState ) ) otherlv_6= 'to' otherlv_7= '=' ( (lv_to_8_0= ruleAState ) ) otherlv_9= 'condition' otherlv_10= '=' ( (lv_condition_11_0= ruleCondition ) ) otherlv_12= '}' )
             {
-            // InternalStateDSL.g:394:2: (otherlv_0= 'Transition' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_from_3_0= ruleAState ) ) ( (lv_to_4_0= ruleAState ) ) ( (lv_condition_5_0= ruleCondition ) ) otherlv_6= '}' )
-            // InternalStateDSL.g:395:3: otherlv_0= 'Transition' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_from_3_0= ruleAState ) ) ( (lv_to_4_0= ruleAState ) ) ( (lv_condition_5_0= ruleCondition ) ) otherlv_6= '}'
+            // InternalStateDSL.g:394:2: (otherlv_0= 'Transition' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'from' otherlv_4= '=' ( (lv_from_5_0= ruleAState ) ) otherlv_6= 'to' otherlv_7= '=' ( (lv_to_8_0= ruleAState ) ) otherlv_9= 'condition' otherlv_10= '=' ( (lv_condition_11_0= ruleCondition ) ) otherlv_12= '}' )
+            // InternalStateDSL.g:395:3: otherlv_0= 'Transition' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'from' otherlv_4= '=' ( (lv_from_5_0= ruleAState ) ) otherlv_6= 'to' otherlv_7= '=' ( (lv_to_8_0= ruleAState ) ) otherlv_9= 'condition' otherlv_10= '=' ( (lv_condition_11_0= ruleCondition ) ) otherlv_12= '}'
             {
             otherlv_0=(Token)match(input,23,FOLLOW_4); 
 
@@ -961,21 +970,29 @@ public class InternalStateDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_9); 
+            otherlv_2=(Token)match(input,12,FOLLOW_17); 
 
             			newLeafNode(otherlv_2, grammarAccess.getTransitionAccess().getLeftCurlyBracketKeyword_2());
             		
-            // InternalStateDSL.g:421:3: ( (lv_from_3_0= ruleAState ) )
-            // InternalStateDSL.g:422:4: (lv_from_3_0= ruleAState )
+            otherlv_3=(Token)match(input,24,FOLLOW_7); 
+
+            			newLeafNode(otherlv_3, grammarAccess.getTransitionAccess().getFromKeyword_3());
+            		
+            otherlv_4=(Token)match(input,14,FOLLOW_9); 
+
+            			newLeafNode(otherlv_4, grammarAccess.getTransitionAccess().getEqualsSignKeyword_4());
+            		
+            // InternalStateDSL.g:429:3: ( (lv_from_5_0= ruleAState ) )
+            // InternalStateDSL.g:430:4: (lv_from_5_0= ruleAState )
             {
-            // InternalStateDSL.g:422:4: (lv_from_3_0= ruleAState )
-            // InternalStateDSL.g:423:5: lv_from_3_0= ruleAState
+            // InternalStateDSL.g:430:4: (lv_from_5_0= ruleAState )
+            // InternalStateDSL.g:431:5: lv_from_5_0= ruleAState
             {
 
-            					newCompositeNode(grammarAccess.getTransitionAccess().getFromAStateParserRuleCall_3_0());
+            					newCompositeNode(grammarAccess.getTransitionAccess().getFromAStateParserRuleCall_5_0());
             				
-            pushFollow(FOLLOW_9);
-            lv_from_3_0=ruleAState();
+            pushFollow(FOLLOW_18);
+            lv_from_5_0=ruleAState();
 
             state._fsp--;
 
@@ -986,7 +1003,7 @@ public class InternalStateDSLParser extends AbstractInternalAntlrParser {
             					set(
             						current,
             						"from",
-            						lv_from_3_0,
+            						lv_from_5_0,
             						"org.xtext.example.statedsl.StateDSL.AState");
             					afterParserOrEnumRuleCall();
             				
@@ -996,17 +1013,25 @@ public class InternalStateDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalStateDSL.g:440:3: ( (lv_to_4_0= ruleAState ) )
-            // InternalStateDSL.g:441:4: (lv_to_4_0= ruleAState )
+            otherlv_6=(Token)match(input,25,FOLLOW_7); 
+
+            			newLeafNode(otherlv_6, grammarAccess.getTransitionAccess().getToKeyword_6());
+            		
+            otherlv_7=(Token)match(input,14,FOLLOW_9); 
+
+            			newLeafNode(otherlv_7, grammarAccess.getTransitionAccess().getEqualsSignKeyword_7());
+            		
+            // InternalStateDSL.g:456:3: ( (lv_to_8_0= ruleAState ) )
+            // InternalStateDSL.g:457:4: (lv_to_8_0= ruleAState )
             {
-            // InternalStateDSL.g:441:4: (lv_to_4_0= ruleAState )
-            // InternalStateDSL.g:442:5: lv_to_4_0= ruleAState
+            // InternalStateDSL.g:457:4: (lv_to_8_0= ruleAState )
+            // InternalStateDSL.g:458:5: lv_to_8_0= ruleAState
             {
 
-            					newCompositeNode(grammarAccess.getTransitionAccess().getToAStateParserRuleCall_4_0());
+            					newCompositeNode(grammarAccess.getTransitionAccess().getToAStateParserRuleCall_8_0());
             				
-            pushFollow(FOLLOW_17);
-            lv_to_4_0=ruleAState();
+            pushFollow(FOLLOW_19);
+            lv_to_8_0=ruleAState();
 
             state._fsp--;
 
@@ -1017,7 +1042,7 @@ public class InternalStateDSLParser extends AbstractInternalAntlrParser {
             					set(
             						current,
             						"to",
-            						lv_to_4_0,
+            						lv_to_8_0,
             						"org.xtext.example.statedsl.StateDSL.AState");
             					afterParserOrEnumRuleCall();
             				
@@ -1027,17 +1052,25 @@ public class InternalStateDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalStateDSL.g:459:3: ( (lv_condition_5_0= ruleCondition ) )
-            // InternalStateDSL.g:460:4: (lv_condition_5_0= ruleCondition )
+            otherlv_9=(Token)match(input,26,FOLLOW_7); 
+
+            			newLeafNode(otherlv_9, grammarAccess.getTransitionAccess().getConditionKeyword_9());
+            		
+            otherlv_10=(Token)match(input,14,FOLLOW_20); 
+
+            			newLeafNode(otherlv_10, grammarAccess.getTransitionAccess().getEqualsSignKeyword_10());
+            		
+            // InternalStateDSL.g:483:3: ( (lv_condition_11_0= ruleCondition ) )
+            // InternalStateDSL.g:484:4: (lv_condition_11_0= ruleCondition )
             {
-            // InternalStateDSL.g:460:4: (lv_condition_5_0= ruleCondition )
-            // InternalStateDSL.g:461:5: lv_condition_5_0= ruleCondition
+            // InternalStateDSL.g:484:4: (lv_condition_11_0= ruleCondition )
+            // InternalStateDSL.g:485:5: lv_condition_11_0= ruleCondition
             {
 
-            					newCompositeNode(grammarAccess.getTransitionAccess().getConditionConditionParserRuleCall_5_0());
+            					newCompositeNode(grammarAccess.getTransitionAccess().getConditionConditionParserRuleCall_11_0());
             				
             pushFollow(FOLLOW_16);
-            lv_condition_5_0=ruleCondition();
+            lv_condition_11_0=ruleCondition();
 
             state._fsp--;
 
@@ -1048,7 +1081,7 @@ public class InternalStateDSLParser extends AbstractInternalAntlrParser {
             					set(
             						current,
             						"condition",
-            						lv_condition_5_0,
+            						lv_condition_11_0,
             						"org.xtext.example.statedsl.StateDSL.Condition");
             					afterParserOrEnumRuleCall();
             				
@@ -1058,9 +1091,9 @@ public class InternalStateDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,20,FOLLOW_2); 
+            otherlv_12=(Token)match(input,20,FOLLOW_2); 
 
-            			newLeafNode(otherlv_6, grammarAccess.getTransitionAccess().getRightCurlyBracketKeyword_6());
+            			newLeafNode(otherlv_12, grammarAccess.getTransitionAccess().getRightCurlyBracketKeyword_12());
             		
 
             }
@@ -1104,6 +1137,9 @@ public class InternalStateDSLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000400000L});
 
 }

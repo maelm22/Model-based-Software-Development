@@ -30,7 +30,7 @@ Condition:
 
 Transition:
     'Transition' name=ID '{' 
-        from=AState 
-        to=AState 
-        condition=Condition 
+        'from' '=' from=AState 
+        'to' '=' to=AState 
+        'condition' '=' condition=Condition 
     '}';

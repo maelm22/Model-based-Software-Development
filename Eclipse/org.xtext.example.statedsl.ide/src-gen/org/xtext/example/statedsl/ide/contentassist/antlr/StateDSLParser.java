@@ -44,9 +44,9 @@ public class StateDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateAccess().getNameAssignment_1(), "rule__State__NameAssignment_1");
 			builder.put(grammarAccess.getConditionAccess().getNameAssignment_1(), "rule__Condition__NameAssignment_1");
 			builder.put(grammarAccess.getTransitionAccess().getNameAssignment_1(), "rule__Transition__NameAssignment_1");
-			builder.put(grammarAccess.getTransitionAccess().getFromAssignment_3(), "rule__Transition__FromAssignment_3");
-			builder.put(grammarAccess.getTransitionAccess().getToAssignment_4(), "rule__Transition__ToAssignment_4");
-			builder.put(grammarAccess.getTransitionAccess().getConditionAssignment_5(), "rule__Transition__ConditionAssignment_5");
+			builder.put(grammarAccess.getTransitionAccess().getFromAssignment_5(), "rule__Transition__FromAssignment_5");
+			builder.put(grammarAccess.getTransitionAccess().getToAssignment_8(), "rule__Transition__ToAssignment_8");
+			builder.put(grammarAccess.getTransitionAccess().getConditionAssignment_11(), "rule__Transition__ConditionAssignment_11");
 		}
 	}
 	
