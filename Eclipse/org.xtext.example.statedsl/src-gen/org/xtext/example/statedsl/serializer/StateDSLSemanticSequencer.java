@@ -132,7 +132,7 @@ public class StateDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Transition returns Transition
 	 *
 	 * Constraint:
-	 *     (name=ID from=State to=State condition=Condition)
+	 *     (name=ID from=AState to=AState condition=Condition)
 	 * </pre>
 	 */
 	protected void sequence_Transition(ISerializationContext context, Transition semanticObject) {
@@ -148,8 +148,8 @@ public class StateDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTransitionAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getTransitionAccess().getFromStateParserRuleCall_3_0(), semanticObject.getFrom());
-		feeder.accept(grammarAccess.getTransitionAccess().getToStateParserRuleCall_4_0(), semanticObject.getTo());
+		feeder.accept(grammarAccess.getTransitionAccess().getFromAStateParserRuleCall_3_0(), semanticObject.getFrom());
+		feeder.accept(grammarAccess.getTransitionAccess().getToAStateParserRuleCall_4_0(), semanticObject.getTo());
 		feeder.accept(grammarAccess.getTransitionAccess().getConditionConditionParserRuleCall_5_0(), semanticObject.getCondition());
 		feeder.finish();
 	}

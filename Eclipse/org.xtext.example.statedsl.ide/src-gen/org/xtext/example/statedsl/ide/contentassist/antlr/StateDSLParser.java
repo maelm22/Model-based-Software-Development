@@ -38,9 +38,9 @@ public class StateDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTransitionAccess().getGroup(), "rule__Transition__Group__0");
 			builder.put(grammarAccess.getDomainmodelAccess().getElementsAssignment(), "rule__Domainmodel__ElementsAssignment");
 			builder.put(grammarAccess.getStateMachineAccess().getNameAssignment_1(), "rule__StateMachine__NameAssignment_1");
-			builder.put(grammarAccess.getStateMachineAccess().getStatesAssignment_5(), "rule__StateMachine__StatesAssignment_5");
-			builder.put(grammarAccess.getStateMachineAccess().getTransitionsAssignment_9(), "rule__StateMachine__TransitionsAssignment_9");
-			builder.put(grammarAccess.getStateMachineAccess().getStartAssignment_13(), "rule__StateMachine__StartAssignment_13");
+			builder.put(grammarAccess.getStateMachineAccess().getStatesAssignment_6(), "rule__StateMachine__StatesAssignment_6");
+			builder.put(grammarAccess.getStateMachineAccess().getTransitionsAssignment_12(), "rule__StateMachine__TransitionsAssignment_12");
+			builder.put(grammarAccess.getStateMachineAccess().getStartAssignment_17(), "rule__StateMachine__StartAssignment_17");
 			builder.put(grammarAccess.getStateAccess().getNameAssignment_1(), "rule__State__NameAssignment_1");
 			builder.put(grammarAccess.getConditionAccess().getNameAssignment_1(), "rule__Condition__NameAssignment_1");
 			builder.put(grammarAccess.getTransitionAccess().getNameAssignment_1(), "rule__Transition__NameAssignment_1");

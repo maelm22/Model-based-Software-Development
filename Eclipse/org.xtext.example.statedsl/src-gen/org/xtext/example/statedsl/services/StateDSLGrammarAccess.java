@@ -28,13 +28,13 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cElementsStateMachineParserRuleCall_0 = (RuleCall)cElementsAssignment.eContents().get(0);
 		
 		//Domainmodel:
-		//    (elements+=StateMachine)*;
+		//    elements+=(StateMachine)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(elements+=StateMachine)*
+		//elements+=(StateMachine)*
 		public Assignment getElementsAssignment() { return cElementsAssignment; }
 		
-		//StateMachine
+		//(StateMachine)
 		public RuleCall getElementsStateMachineParserRuleCall_0() { return cElementsStateMachineParserRuleCall_0; }
 	}
 	public class StateMachineElements extends AbstractParserRuleElementFinder {
@@ -46,31 +46,35 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cStatesKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cStatesAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cStatesAStateParserRuleCall_5_0 = (RuleCall)cStatesAssignment_5.eContents().get(0);
-		private final Keyword cCommaKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Keyword cTransitionsKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Keyword cEqualsSignKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Assignment cTransitionsAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cTransitionsTransitionParserRuleCall_9_0 = (RuleCall)cTransitionsAssignment_9.eContents().get(0);
-		private final Keyword cCommaKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final Keyword cStartKeyword_11 = (Keyword)cGroup.eContents().get(11);
-		private final Keyword cEqualsSignKeyword_12 = (Keyword)cGroup.eContents().get(12);
-		private final Assignment cStartAssignment_13 = (Assignment)cGroup.eContents().get(13);
-		private final RuleCall cStartStateParserRuleCall_13_0 = (RuleCall)cStartAssignment_13.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_14 = (Keyword)cGroup.eContents().get(14);
+		private final Keyword cLeftSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cStatesAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cStatesAStateParserRuleCall_6_0 = (RuleCall)cStatesAssignment_6.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cCommaKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cTransitionsKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Keyword cLeftSquareBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Assignment cTransitionsAssignment_12 = (Assignment)cGroup.eContents().get(12);
+		private final RuleCall cTransitionsTransitionParserRuleCall_12_0 = (RuleCall)cTransitionsAssignment_12.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_13 = (Keyword)cGroup.eContents().get(13);
+		private final Keyword cCommaKeyword_14 = (Keyword)cGroup.eContents().get(14);
+		private final Keyword cStartKeyword_15 = (Keyword)cGroup.eContents().get(15);
+		private final Keyword cEqualsSignKeyword_16 = (Keyword)cGroup.eContents().get(16);
+		private final Assignment cStartAssignment_17 = (Assignment)cGroup.eContents().get(17);
+		private final RuleCall cStartStateParserRuleCall_17_0 = (RuleCall)cStartAssignment_17.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_18 = (Keyword)cGroup.eContents().get(18);
 		
 		//StateMachine:
 		//    'StateMachine' name=ID '{'
-		//        'states' '=' states+= (AState)+ ','
-		//        'transitions' '=' transitions+= (Transition)* ','
+		//        'states' '=' '[' states+=(AState)+ ']' ','
+		//        'transitions' '=' '[' transitions+=(Transition)* ']' ','
 		//        'start' '=' start=State
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'StateMachine' name=ID '{'
-		//    'states' '=' states+= (AState)+ ','
-		//    'transitions' '=' transitions+= (Transition)* ','
+		//    'states' '=' '[' states+=(AState)+ ']' ','
+		//    'transitions' '=' '[' transitions+=(Transition)* ']' ','
 		//    'start' '=' start=State
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -93,44 +97,56 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//'='
 		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
 		
-		//states+= (AState)+
-		public Assignment getStatesAssignment_5() { return cStatesAssignment_5; }
+		//'['
+		public Keyword getLeftSquareBracketKeyword_5() { return cLeftSquareBracketKeyword_5; }
+		
+		//states+=(AState)+
+		public Assignment getStatesAssignment_6() { return cStatesAssignment_6; }
 		
 		//(AState)
-		public RuleCall getStatesAStateParserRuleCall_5_0() { return cStatesAStateParserRuleCall_5_0; }
+		public RuleCall getStatesAStateParserRuleCall_6_0() { return cStatesAStateParserRuleCall_6_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_7() { return cRightSquareBracketKeyword_7; }
 		
 		//','
-		public Keyword getCommaKeyword_6() { return cCommaKeyword_6; }
+		public Keyword getCommaKeyword_8() { return cCommaKeyword_8; }
 		
 		//'transitions'
-		public Keyword getTransitionsKeyword_7() { return cTransitionsKeyword_7; }
+		public Keyword getTransitionsKeyword_9() { return cTransitionsKeyword_9; }
 		
 		//'='
-		public Keyword getEqualsSignKeyword_8() { return cEqualsSignKeyword_8; }
+		public Keyword getEqualsSignKeyword_10() { return cEqualsSignKeyword_10; }
 		
-		//transitions+= (Transition)*
-		public Assignment getTransitionsAssignment_9() { return cTransitionsAssignment_9; }
+		//'['
+		public Keyword getLeftSquareBracketKeyword_11() { return cLeftSquareBracketKeyword_11; }
+		
+		//transitions+=(Transition)*
+		public Assignment getTransitionsAssignment_12() { return cTransitionsAssignment_12; }
 		
 		//(Transition)
-		public RuleCall getTransitionsTransitionParserRuleCall_9_0() { return cTransitionsTransitionParserRuleCall_9_0; }
+		public RuleCall getTransitionsTransitionParserRuleCall_12_0() { return cTransitionsTransitionParserRuleCall_12_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_13() { return cRightSquareBracketKeyword_13; }
 		
 		//','
-		public Keyword getCommaKeyword_10() { return cCommaKeyword_10; }
+		public Keyword getCommaKeyword_14() { return cCommaKeyword_14; }
 		
 		//'start'
-		public Keyword getStartKeyword_11() { return cStartKeyword_11; }
+		public Keyword getStartKeyword_15() { return cStartKeyword_15; }
 		
 		//'='
-		public Keyword getEqualsSignKeyword_12() { return cEqualsSignKeyword_12; }
+		public Keyword getEqualsSignKeyword_16() { return cEqualsSignKeyword_16; }
 		
 		//start=State
-		public Assignment getStartAssignment_13() { return cStartAssignment_13; }
+		public Assignment getStartAssignment_17() { return cStartAssignment_17; }
 		
 		//State
-		public RuleCall getStartStateParserRuleCall_13_0() { return cStartStateParserRuleCall_13_0; }
+		public RuleCall getStartStateParserRuleCall_17_0() { return cStartStateParserRuleCall_17_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_14() { return cRightCurlyBracketKeyword_14; }
+		public Keyword getRightCurlyBracketKeyword_18() { return cRightCurlyBracketKeyword_18; }
 	}
 	public class AStateElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.statedsl.StateDSL.AState");
@@ -162,11 +178,11 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//State:
-		//   'State' name=ID '{' '}'
+		//   'State' name=ID '{'   '}'
 		//    ;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'State' name=ID '{' '}'
+		//'State' name=ID '{'   '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'State'
@@ -192,13 +208,13 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//Condition:
-		//    'condition' name=ID ;
+		//    'Condition' name=ID ;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'condition' name=ID
+		//'Condition' name=ID
 		public Group getGroup() { return cGroup; }
 		
-		//'condition'
+		//'Condition'
 		public Keyword getConditionKeyword_0() { return cConditionKeyword_0; }
 		
 		//name=ID
@@ -215,29 +231,29 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cFromAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cFromStateParserRuleCall_3_0 = (RuleCall)cFromAssignment_3.eContents().get(0);
+		private final RuleCall cFromAStateParserRuleCall_3_0 = (RuleCall)cFromAssignment_3.eContents().get(0);
 		private final Assignment cToAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cToStateParserRuleCall_4_0 = (RuleCall)cToAssignment_4.eContents().get(0);
+		private final RuleCall cToAStateParserRuleCall_4_0 = (RuleCall)cToAssignment_4.eContents().get(0);
 		private final Assignment cConditionAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cConditionConditionParserRuleCall_5_0 = (RuleCall)cConditionAssignment_5.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Transition:
-		//    'transition' name=ID '{'
-		//        from=State
-		//        to=State
+		//    'Transition' name=ID '{'
+		//        from=AState
+		//        to=AState
 		//        condition=Condition
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'transition' name=ID '{'
-		//    from=State
-		//    to=State
+		//'Transition' name=ID '{'
+		//    from=AState
+		//    to=AState
 		//    condition=Condition
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
-		//'transition'
+		//'Transition'
 		public Keyword getTransitionKeyword_0() { return cTransitionKeyword_0; }
 		
 		//name=ID
@@ -249,17 +265,17 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//from=State
+		//from=AState
 		public Assignment getFromAssignment_3() { return cFromAssignment_3; }
 		
-		//State
-		public RuleCall getFromStateParserRuleCall_3_0() { return cFromStateParserRuleCall_3_0; }
+		//AState
+		public RuleCall getFromAStateParserRuleCall_3_0() { return cFromAStateParserRuleCall_3_0; }
 		
-		//to=State
+		//to=AState
 		public Assignment getToAssignment_4() { return cToAssignment_4; }
 		
-		//State
-		public RuleCall getToStateParserRuleCall_4_0() { return cToStateParserRuleCall_4_0; }
+		//AState
+		public RuleCall getToAStateParserRuleCall_4_0() { return cToAStateParserRuleCall_4_0; }
 		
 		//condition=Condition
 		public Assignment getConditionAssignment_5() { return cConditionAssignment_5; }
@@ -324,7 +340,7 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 
 	
 	//Domainmodel:
-	//    (elements+=StateMachine)*;
+	//    elements+=(StateMachine)*;
 	public DomainmodelElements getDomainmodelAccess() {
 		return pDomainmodel;
 	}
@@ -335,8 +351,8 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	//StateMachine:
 	//    'StateMachine' name=ID '{'
-	//        'states' '=' states+= (AState)+ ','
-	//        'transitions' '=' transitions+= (Transition)* ','
+	//        'states' '=' '[' states+=(AState)+ ']' ','
+	//        'transitions' '=' '[' transitions+=(Transition)* ']' ','
 	//        'start' '=' start=State
 	//    '}';
 	public StateMachineElements getStateMachineAccess() {
@@ -359,7 +375,7 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//State:
-	//   'State' name=ID '{' '}'
+	//   'State' name=ID '{'   '}'
 	//    ;
 	public StateElements getStateAccess() {
 		return pState;
@@ -370,7 +386,7 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Condition:
-	//    'condition' name=ID ;
+	//    'Condition' name=ID ;
 	public ConditionElements getConditionAccess() {
 		return pCondition;
 	}
@@ -380,9 +396,9 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Transition:
-	//    'transition' name=ID '{'
-	//        from=State
-	//        to=State
+	//    'Transition' name=ID '{'
+	//        from=AState
+	//        to=AState
 	//        condition=Condition
 	//    '}';
 	public TransitionElements getTransitionAccess() {

@@ -146,12 +146,16 @@ ruleStateMachine returns [EObject current=null]
 		{
 			newLeafNode(otherlv_4, grammarAccess.getStateMachineAccess().getEqualsSignKeyword_4());
 		}
+		otherlv_5='['
+		{
+			newLeafNode(otherlv_5, grammarAccess.getStateMachineAccess().getLeftSquareBracketKeyword_5());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getStateMachineAccess().getStatesAStateParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getStateMachineAccess().getStatesAStateParserRuleCall_6_0());
 				}
-				lv_states_5_0=ruleAState
+				lv_states_6_0=ruleAState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getStateMachineRule());
@@ -159,30 +163,38 @@ ruleStateMachine returns [EObject current=null]
 					add(
 						$current,
 						"states",
-						lv_states_5_0,
+						lv_states_6_0,
 						"org.xtext.example.statedsl.StateDSL.AState");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)+
-		otherlv_6=','
+		otherlv_7=']'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getStateMachineAccess().getCommaKeyword_6());
+			newLeafNode(otherlv_7, grammarAccess.getStateMachineAccess().getRightSquareBracketKeyword_7());
 		}
-		otherlv_7='transitions'
+		otherlv_8=','
 		{
-			newLeafNode(otherlv_7, grammarAccess.getStateMachineAccess().getTransitionsKeyword_7());
+			newLeafNode(otherlv_8, grammarAccess.getStateMachineAccess().getCommaKeyword_8());
 		}
-		otherlv_8='='
+		otherlv_9='transitions'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getStateMachineAccess().getEqualsSignKeyword_8());
+			newLeafNode(otherlv_9, grammarAccess.getStateMachineAccess().getTransitionsKeyword_9());
+		}
+		otherlv_10='='
+		{
+			newLeafNode(otherlv_10, grammarAccess.getStateMachineAccess().getEqualsSignKeyword_10());
+		}
+		otherlv_11='['
+		{
+			newLeafNode(otherlv_11, grammarAccess.getStateMachineAccess().getLeftSquareBracketKeyword_11());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getStateMachineAccess().getTransitionsTransitionParserRuleCall_9_0());
+					newCompositeNode(grammarAccess.getStateMachineAccess().getTransitionsTransitionParserRuleCall_12_0());
 				}
-				lv_transitions_9_0=ruleTransition
+				lv_transitions_12_0=ruleTransition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getStateMachineRule());
@@ -190,30 +202,34 @@ ruleStateMachine returns [EObject current=null]
 					add(
 						$current,
 						"transitions",
-						lv_transitions_9_0,
+						lv_transitions_12_0,
 						"org.xtext.example.statedsl.StateDSL.Transition");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_10=','
+		otherlv_13=']'
 		{
-			newLeafNode(otherlv_10, grammarAccess.getStateMachineAccess().getCommaKeyword_10());
+			newLeafNode(otherlv_13, grammarAccess.getStateMachineAccess().getRightSquareBracketKeyword_13());
 		}
-		otherlv_11='start'
+		otherlv_14=','
 		{
-			newLeafNode(otherlv_11, grammarAccess.getStateMachineAccess().getStartKeyword_11());
+			newLeafNode(otherlv_14, grammarAccess.getStateMachineAccess().getCommaKeyword_14());
 		}
-		otherlv_12='='
+		otherlv_15='start'
 		{
-			newLeafNode(otherlv_12, grammarAccess.getStateMachineAccess().getEqualsSignKeyword_12());
+			newLeafNode(otherlv_15, grammarAccess.getStateMachineAccess().getStartKeyword_15());
+		}
+		otherlv_16='='
+		{
+			newLeafNode(otherlv_16, grammarAccess.getStateMachineAccess().getEqualsSignKeyword_16());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getStateMachineAccess().getStartStateParserRuleCall_13_0());
+					newCompositeNode(grammarAccess.getStateMachineAccess().getStartStateParserRuleCall_17_0());
 				}
-				lv_start_13_0=ruleState
+				lv_start_17_0=ruleState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getStateMachineRule());
@@ -221,15 +237,15 @@ ruleStateMachine returns [EObject current=null]
 					set(
 						$current,
 						"start",
-						lv_start_13_0,
+						lv_start_17_0,
 						"org.xtext.example.statedsl.StateDSL.State");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_14='}'
+		otherlv_18='}'
 		{
-			newLeafNode(otherlv_14, grammarAccess.getStateMachineAccess().getRightCurlyBracketKeyword_14());
+			newLeafNode(otherlv_18, grammarAccess.getStateMachineAccess().getRightCurlyBracketKeyword_18());
 		}
 	)
 ;
@@ -335,7 +351,7 @@ ruleCondition returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='condition'
+		otherlv_0='Condition'
 		{
 			newLeafNode(otherlv_0, grammarAccess.getConditionAccess().getConditionKeyword_0());
 		}
@@ -376,7 +392,7 @@ ruleTransition returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='transition'
+		otherlv_0='Transition'
 		{
 			newLeafNode(otherlv_0, grammarAccess.getTransitionAccess().getTransitionKeyword_0());
 		}
@@ -405,9 +421,9 @@ ruleTransition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTransitionAccess().getFromStateParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getTransitionAccess().getFromAStateParserRuleCall_3_0());
 				}
-				lv_from_3_0=ruleState
+				lv_from_3_0=ruleAState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTransitionRule());
@@ -416,7 +432,7 @@ ruleTransition returns [EObject current=null]
 						$current,
 						"from",
 						lv_from_3_0,
-						"org.xtext.example.statedsl.StateDSL.State");
+						"org.xtext.example.statedsl.StateDSL.AState");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -424,9 +440,9 @@ ruleTransition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTransitionAccess().getToStateParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getTransitionAccess().getToAStateParserRuleCall_4_0());
 				}
-				lv_to_4_0=ruleState
+				lv_to_4_0=ruleAState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTransitionRule());
@@ -435,7 +451,7 @@ ruleTransition returns [EObject current=null]
 						$current,
 						"to",
 						lv_to_4_0,
-						"org.xtext.example.statedsl.StateDSL.State");
+						"org.xtext.example.statedsl.StateDSL.AState");
 					afterParserOrEnumRuleCall();
 				}
 			)

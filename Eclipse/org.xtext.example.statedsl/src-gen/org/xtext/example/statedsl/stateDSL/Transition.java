@@ -53,12 +53,12 @@ public interface Transition extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>From</em>' containment reference.
-   * @see #setFrom(State)
+   * @see #setFrom(AState)
    * @see org.xtext.example.statedsl.stateDSL.StateDSLPackage#getTransition_From()
    * @model containment="true"
    * @generated
    */
-  State getFrom();
+  AState getFrom();
 
   /**
    * Sets the value of the '{@link org.xtext.example.statedsl.stateDSL.Transition#getFrom <em>From</em>}' containment reference.
@@ -68,19 +68,19 @@ public interface Transition extends EObject
    * @see #getFrom()
    * @generated
    */
-  void setFrom(State value);
+  void setFrom(AState value);
 
   /**
    * Returns the value of the '<em><b>To</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>To</em>' containment reference.
-   * @see #setTo(State)
+   * @see #setTo(AState)
    * @see org.xtext.example.statedsl.stateDSL.StateDSLPackage#getTransition_To()
    * @model containment="true"
    * @generated
    */
-  State getTo();
+  AState getTo();
 
   /**
    * Sets the value of the '{@link org.xtext.example.statedsl.stateDSL.Transition#getTo <em>To</em>}' containment reference.
@@ -90,7 +90,7 @@ public interface Transition extends EObject
    * @see #getTo()
    * @generated
    */
-  void setTo(State value);
+  void setTo(AState value);
 
   /**
    * Returns the value of the '<em><b>Condition</b></em>' containment reference.

@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.xtext.example.statedsl.stateDSL.AState;
 import org.xtext.example.statedsl.stateDSL.Condition;
-import org.xtext.example.statedsl.stateDSL.State;
 import org.xtext.example.statedsl.stateDSL.StateDSLPackage;
 import org.xtext.example.statedsl.stateDSL.Transition;
 
@@ -63,7 +63,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * @generated
    * @ordered
    */
-  protected State from;
+  protected AState from;
 
   /**
    * The cached value of the '{@link #getTo() <em>To</em>}' containment reference.
@@ -73,7 +73,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * @generated
    * @ordered
    */
-  protected State to;
+  protected AState to;
 
   /**
    * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
@@ -137,7 +137,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * @generated
    */
   @Override
-  public State getFrom()
+  public AState getFrom()
   {
     return from;
   }
@@ -147,9 +147,9 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetFrom(State newFrom, NotificationChain msgs)
+  public NotificationChain basicSetFrom(AState newFrom, NotificationChain msgs)
   {
-    State oldFrom = from;
+    AState oldFrom = from;
     from = newFrom;
     if (eNotificationRequired())
     {
@@ -165,7 +165,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * @generated
    */
   @Override
-  public void setFrom(State newFrom)
+  public void setFrom(AState newFrom)
   {
     if (newFrom != from)
     {
@@ -187,7 +187,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * @generated
    */
   @Override
-  public State getTo()
+  public AState getTo()
   {
     return to;
   }
@@ -197,9 +197,9 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTo(State newTo, NotificationChain msgs)
+  public NotificationChain basicSetTo(AState newTo, NotificationChain msgs)
   {
-    State oldTo = to;
+    AState oldTo = to;
     to = newTo;
     if (eNotificationRequired())
     {
@@ -215,7 +215,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * @generated
    */
   @Override
-  public void setTo(State newTo)
+  public void setTo(AState newTo)
   {
     if (newTo != to)
     {
@@ -337,10 +337,10 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
         setName((String)newValue);
         return;
       case StateDSLPackage.TRANSITION__FROM:
-        setFrom((State)newValue);
+        setFrom((AState)newValue);
         return;
       case StateDSLPackage.TRANSITION__TO:
-        setTo((State)newValue);
+        setTo((AState)newValue);
         return;
       case StateDSLPackage.TRANSITION__CONDITION:
         setCondition((Condition)newValue);
@@ -363,10 +363,10 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
         setName(NAME_EDEFAULT);
         return;
       case StateDSLPackage.TRANSITION__FROM:
-        setFrom((State)null);
+        setFrom((AState)null);
         return;
       case StateDSLPackage.TRANSITION__TO:
-        setTo((State)null);
+        setTo((AState)null);
         return;
       case StateDSLPackage.TRANSITION__CONDITION:
         setCondition((Condition)null);

@@ -23,9 +23,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//State"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//AState"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//State" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//AState" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Condition"
         containment="true"/>
   </eClassifiers>
