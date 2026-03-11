@@ -7,6 +7,13 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.xtext.example.statedsl.stateDSL.AState
+import org.xtext.example.statedsl.stateDSL.StateMachine
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import jakarta.inject.Inject
+import org.xtext.example.statedsl.stateDSL.Transition
+import org.xtext.example.statedsl.stateDSL.Condition
+import org.xtext.example.statedsl.stateDSL.State
 
 /**
  * Generates code from your model files on save.
@@ -14,12 +21,82 @@ import org.eclipse.xtext.generator.IGeneratorContext
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class StateDSLGenerator extends AbstractGenerator {
+	
+	@Inject extension IQualifiedNameProvider
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		
+		    for (e : resource.allContents.toIterable.filter(AState)) {
+	        fsa.generateFile(
+	            e.fullyQualifiedName.toString("/") + ".java",
+	            e.compile)
+	    }	
+		
 	}
+	
+	private def compile(StateMachine machine)'''
+	«IF machine.eContainer.fullyQualifiedName != null»
+		package «machine.eContainer.fullyQualifiedName»
+	«ENDIF»
+	
+	public class «machine.name» {}
+	        «FOR transition : machine.transitions»
+	            «transition.compile»
+	        «ENDFOR»
+	        
+	        «FOR state : machine.states»
+	            «state.compile»
+	        «ENDFOR»
+
+
+	'''
+	
+	
+	private def compile(AState astate)'''
+	«IF astate.eContainer.fullyQualifiedName != null»
+			package «astate.eContainer.fullyQualifiedName»
+		«ENDIF»
+	
+	«IF astate instanceof State»
+	«(astate as State).compile»
+	«ELSEIF astate instanceof StateMachine»
+	«(astate as StateMachine).compile»
+	«ENDIF»
+	
+	
+	'''
+	
+	
+	private def compile(State state)'''
+	«IF state.eContainer.fullyQualifiedName != null»
+		package «state.eContainer.fullyQualifiedName»
+	«ENDIF»
+	
+	public class «state.name» {}
+	
+	
+
+
+
+	'''
+	
+	private def compile(Transition transition)'''
+	«IF transition.eContainer.fullyQualifiedName != null»
+		package «transition.eContainer.fullyQualifiedName»
+	«ENDIF»
+	
+	public class «transition.name» {}
+	            «transition.condition.compile»
+
+
+	'''
+	def compile(Condition condition)'''
+	«IF condition.eContainer.fullyQualifiedName != null»
+		package «condition.eContainer.fullyQualifiedName»
+	«ENDIF»
+	
+	public class «condition.name» {}
+
+
+	'''
 }

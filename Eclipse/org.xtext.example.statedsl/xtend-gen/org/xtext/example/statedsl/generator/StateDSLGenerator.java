@@ -3,10 +3,25 @@
  */
 package org.xtext.example.statedsl.generator;
 
+import com.google.common.collect.Iterables;
+import jakarta.inject.Inject;
+import java.util.Objects;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.statedsl.stateDSL.AState;
+import org.xtext.example.statedsl.stateDSL.Condition;
+import org.xtext.example.statedsl.stateDSL.State;
+import org.xtext.example.statedsl.stateDSL.StateMachine;
+import org.xtext.example.statedsl.stateDSL.Transition;
 
 /**
  * Generates code from your model files on save.
@@ -15,7 +30,168 @@ import org.eclipse.xtext.generator.IGeneratorContext;
  */
 @SuppressWarnings("all")
 public class StateDSLGenerator extends AbstractGenerator {
+  @Inject
+  @Extension
+  private IQualifiedNameProvider _iQualifiedNameProvider;
+
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    Iterable<AState> _filter = Iterables.<AState>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), AState.class);
+    for (final AState e : _filter) {
+      String _string = this._iQualifiedNameProvider.getFullyQualifiedName(e).toString("/");
+      String _plus = (_string + ".java");
+      fsa.generateFile(_plus, 
+        this.compile(e));
+    }
+  }
+
+  private CharSequence compile(final StateMachine machine) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(machine.eContainer());
+      boolean _notEquals = (!Objects.equals(_fullyQualifiedName, null));
+      if (_notEquals) {
+        _builder.append("package ");
+        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(machine.eContainer());
+        _builder.append(_fullyQualifiedName_1);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("public class ");
+    String _name = machine.getName();
+    _builder.append(_name);
+    _builder.append(" {}");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Transition> _transitions = machine.getTransitions();
+      for(final Transition transition : _transitions) {
+        _builder.append("        ");
+        CharSequence _compile = this.compile(transition);
+        _builder.append(_compile, "        ");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("        ");
+    _builder.newLine();
+    {
+      EList<AState> _states = machine.getStates();
+      for(final AState state : _states) {
+        _builder.append("        ");
+        Object _compile_1 = this.compile(state);
+        _builder.append(_compile_1, "        ");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+
+  private CharSequence compile(final AState astate) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(astate.eContainer());
+      boolean _notEquals = (!Objects.equals(_fullyQualifiedName, null));
+      if (_notEquals) {
+        _builder.append("package ");
+        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(astate.eContainer());
+        _builder.append(_fullyQualifiedName_1);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    {
+      if ((astate instanceof State)) {
+        CharSequence _compile = this.compile(((State) astate));
+        _builder.append(_compile);
+        _builder.newLineIfNotEmpty();
+      } else {
+        if ((astate instanceof StateMachine)) {
+          CharSequence _compile_1 = this.compile(((StateMachine) astate));
+          _builder.append(_compile_1);
+          _builder.newLineIfNotEmpty();
+        }
+      }
+    }
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+
+  private CharSequence compile(final State state) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(state.eContainer());
+      boolean _notEquals = (!Objects.equals(_fullyQualifiedName, null));
+      if (_notEquals) {
+        _builder.append("package ");
+        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(state.eContainer());
+        _builder.append(_fullyQualifiedName_1);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("public class ");
+    String _name = state.getName();
+    _builder.append(_name);
+    _builder.append(" {}");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+
+  private CharSequence compile(final Transition transition) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(transition.eContainer());
+      boolean _notEquals = (!Objects.equals(_fullyQualifiedName, null));
+      if (_notEquals) {
+        _builder.append("package ");
+        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(transition.eContainer());
+        _builder.append(_fullyQualifiedName_1);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("public class ");
+    String _name = transition.getName();
+    _builder.append(_name);
+    _builder.append(" {}");
+    _builder.newLineIfNotEmpty();
+    _builder.append("            ");
+    CharSequence _compile = this.compile(transition.getCondition());
+    _builder.append(_compile, "            ");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+
+  public CharSequence compile(final Condition condition) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(condition.eContainer());
+      boolean _notEquals = (!Objects.equals(_fullyQualifiedName, null));
+      if (_notEquals) {
+        _builder.append("package ");
+        QualifiedName _fullyQualifiedName_1 = this._iQualifiedNameProvider.getFullyQualifiedName(condition.eContainer());
+        _builder.append(_fullyQualifiedName_1);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("public class ");
+    String _name = condition.getName();
+    _builder.append(_name);
+    _builder.append(" {}");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
   }
 }
