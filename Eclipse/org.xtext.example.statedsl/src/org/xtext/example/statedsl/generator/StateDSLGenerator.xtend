@@ -37,7 +37,7 @@ class StateDSLGenerator extends AbstractGenerator {
         }
 
         fsa.generateFile(
-            stateMachine.fullyQualifiedName.toString("/") + ".gd",
+            stateMachine.fullyQualifiedName.toString("/") + ".txt",
             compileBase(stateMachine)
         );
     }

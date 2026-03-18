@@ -46,7 +46,7 @@ public class StateDSLGenerator extends AbstractGenerator {
       return;
     }
     String _string = this._iQualifiedNameProvider.getFullyQualifiedName(stateMachine).toString("/");
-    String _plus_2 = (_string + ".gd");
+    String _plus_2 = (_string + ".txt");
     fsa.generateFile(_plus_2, 
       this.compileBase(stateMachine));
   }
