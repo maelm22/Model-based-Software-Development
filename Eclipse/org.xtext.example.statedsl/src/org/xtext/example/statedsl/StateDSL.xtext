@@ -5,13 +5,13 @@ generate stateDSL "http://www.xtext.org/example/statedsl/StateDSL"
 Domainmodel:
     elements+=(StateMachine)*;
 
-
 StateMachine:
     'StateMachine' name=ID '{' 
         'states' '=' '[' states+=(AState)+ ']' ','
         'transitions' '=' '[' transitions+=(Transition)* ']' ','
-        'start' '=' start=State 
+        'start' '=' start=State
     '}';
+
 
 
     
@@ -21,12 +21,16 @@ AState:
 ;    
 
 State:
-   'State' name=ID '{'   '}'
+   'State' name=ID
     
     ;
 
 Condition:
-    'Condition' name=ID ;
+    'Condition' name=ID 
+    
+    
+    
+    ;
 
 Transition:
     'Transition' name=ID '{' 

@@ -177,4 +177,6 @@ public class AStateImpl extends MinimalEObjectImpl.Container implements AState
     return result.toString();
   }
 
+  
+
 } //AStateImpl

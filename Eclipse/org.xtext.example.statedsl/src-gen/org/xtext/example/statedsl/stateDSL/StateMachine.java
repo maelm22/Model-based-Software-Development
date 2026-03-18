@@ -71,6 +71,4 @@ public interface StateMachine extends AState
    */
   void setStart(State value);
 
-  
-
 } // StateMachine
