@@ -69,8 +69,10 @@ public class StateDSLFactoryImpl extends EFactoryImpl implements StateDSLFactory
       case StateDSLPackage.STATE_MACHINE: return createStateMachine();
       case StateDSLPackage.ASTATE: return createAState();
       case StateDSLPackage.STATE: return createState();
-      case StateDSLPackage.CONDITION: return createCondition();
       case StateDSLPackage.TRANSITION: return createTransition();
+      case StateDSLPackage.CONDITION: return createCondition();
+      case StateDSLPackage.OR_CONDITION: return createOrCondition();
+      case StateDSLPackage.AND_CONDITION: return createAndCondition();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -130,6 +132,18 @@ public class StateDSLFactoryImpl extends EFactoryImpl implements StateDSLFactory
    * @generated
    */
   @Override
+  public Transition createTransition()
+  {
+    TransitionImpl transition = new TransitionImpl();
+    return transition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Condition createCondition()
   {
     ConditionImpl condition = new ConditionImpl();
@@ -142,10 +156,22 @@ public class StateDSLFactoryImpl extends EFactoryImpl implements StateDSLFactory
    * @generated
    */
   @Override
-  public Transition createTransition()
+  public OrCondition createOrCondition()
   {
-    TransitionImpl transition = new TransitionImpl();
-    return transition;
+    OrConditionImpl orCondition = new OrConditionImpl();
+    return orCondition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AndCondition createAndCondition()
+  {
+    AndConditionImpl andCondition = new AndConditionImpl();
+    return andCondition;
   }
 
   /**

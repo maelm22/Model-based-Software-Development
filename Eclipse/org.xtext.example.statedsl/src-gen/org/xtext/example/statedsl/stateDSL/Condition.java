@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.statedsl.stateDSL.Condition#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.statedsl.stateDSL.Condition#getLeft <em>Left</em>}</li>
+ *   <li>{@link org.xtext.example.statedsl.stateDSL.Condition#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.statedsl.stateDSL.StateDSLPackage#getCondition()
@@ -44,5 +46,49 @@ public interface Condition extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Left</em>' containment reference.
+   * @see #setLeft(Condition)
+   * @see org.xtext.example.statedsl.stateDSL.StateDSLPackage#getCondition_Left()
+   * @model containment="true"
+   * @generated
+   */
+  Condition getLeft();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.statedsl.stateDSL.Condition#getLeft <em>Left</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Left</em>' containment reference.
+   * @see #getLeft()
+   * @generated
+   */
+  void setLeft(Condition value);
+
+  /**
+   * Returns the value of the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Right</em>' containment reference.
+   * @see #setRight(Condition)
+   * @see org.xtext.example.statedsl.stateDSL.StateDSLPackage#getCondition_Right()
+   * @model containment="true"
+   * @generated
+   */
+  Condition getRight();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.statedsl.stateDSL.Condition#getRight <em>Right</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Right</em>' containment reference.
+   * @see #getRight()
+   * @generated
+   */
+  void setRight(Condition value);
 
 } // Condition

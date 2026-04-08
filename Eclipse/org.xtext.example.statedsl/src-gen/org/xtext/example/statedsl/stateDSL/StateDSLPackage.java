@@ -197,34 +197,6 @@ public interface StateDSLPackage extends EPackage
   int STATE_FEATURE_COUNT = ASTATE_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.statedsl.stateDSL.impl.ConditionImpl <em>Condition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.statedsl.stateDSL.impl.ConditionImpl
-   * @see org.xtext.example.statedsl.stateDSL.impl.StateDSLPackageImpl#getCondition()
-   * @generated
-   */
-  int CONDITION = 4;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONDITION__NAME = 0;
-
-  /**
-   * The number of structural features of the '<em>Condition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONDITION_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link org.xtext.example.statedsl.stateDSL.impl.TransitionImpl <em>Transition</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -232,7 +204,7 @@ public interface StateDSLPackage extends EPackage
    * @see org.xtext.example.statedsl.stateDSL.impl.StateDSLPackageImpl#getTransition()
    * @generated
    */
-  int TRANSITION = 5;
+  int TRANSITION = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -278,6 +250,144 @@ public interface StateDSLPackage extends EPackage
    * @ordered
    */
   int TRANSITION_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.statedsl.stateDSL.impl.ConditionImpl <em>Condition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.statedsl.stateDSL.impl.ConditionImpl
+   * @see org.xtext.example.statedsl.stateDSL.impl.StateDSLPackageImpl#getCondition()
+   * @generated
+   */
+  int CONDITION = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION__LEFT = 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION__RIGHT = 2;
+
+  /**
+   * The number of structural features of the '<em>Condition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.statedsl.stateDSL.impl.OrConditionImpl <em>Or Condition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.statedsl.stateDSL.impl.OrConditionImpl
+   * @see org.xtext.example.statedsl.stateDSL.impl.StateDSLPackageImpl#getOrCondition()
+   * @generated
+   */
+  int OR_CONDITION = 6;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_CONDITION__NAME = CONDITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_CONDITION__LEFT = CONDITION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_CONDITION__RIGHT = CONDITION__RIGHT;
+
+  /**
+   * The number of structural features of the '<em>Or Condition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.statedsl.stateDSL.impl.AndConditionImpl <em>And Condition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.statedsl.stateDSL.impl.AndConditionImpl
+   * @see org.xtext.example.statedsl.stateDSL.impl.StateDSLPackageImpl#getAndCondition()
+   * @generated
+   */
+  int AND_CONDITION = 7;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_CONDITION__NAME = CONDITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_CONDITION__LEFT = CONDITION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_CONDITION__RIGHT = CONDITION__RIGHT;
+
+  /**
+   * The number of structural features of the '<em>And Condition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 0;
 
 
   /**
@@ -376,27 +486,6 @@ public interface StateDSLPackage extends EPackage
   EClass getState();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.statedsl.stateDSL.Condition <em>Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Condition</em>'.
-   * @see org.xtext.example.statedsl.stateDSL.Condition
-   * @generated
-   */
-  EClass getCondition();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.statedsl.stateDSL.Condition#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.statedsl.stateDSL.Condition#getName()
-   * @see #getCondition()
-   * @generated
-   */
-  EAttribute getCondition_Name();
-
-  /**
    * Returns the meta object for class '{@link org.xtext.example.statedsl.stateDSL.Transition <em>Transition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -449,6 +538,69 @@ public interface StateDSLPackage extends EPackage
    * @generated
    */
   EReference getTransition_Condition();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.statedsl.stateDSL.Condition <em>Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Condition</em>'.
+   * @see org.xtext.example.statedsl.stateDSL.Condition
+   * @generated
+   */
+  EClass getCondition();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.statedsl.stateDSL.Condition#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.statedsl.stateDSL.Condition#getName()
+   * @see #getCondition()
+   * @generated
+   */
+  EAttribute getCondition_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.statedsl.stateDSL.Condition#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.example.statedsl.stateDSL.Condition#getLeft()
+   * @see #getCondition()
+   * @generated
+   */
+  EReference getCondition_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.statedsl.stateDSL.Condition#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.example.statedsl.stateDSL.Condition#getRight()
+   * @see #getCondition()
+   * @generated
+   */
+  EReference getCondition_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.statedsl.stateDSL.OrCondition <em>Or Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Or Condition</em>'.
+   * @see org.xtext.example.statedsl.stateDSL.OrCondition
+   * @generated
+   */
+  EClass getOrCondition();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.statedsl.stateDSL.AndCondition <em>And Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>And Condition</em>'.
+   * @see org.xtext.example.statedsl.stateDSL.AndCondition
+   * @generated
+   */
+  EClass getAndCondition();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -554,24 +706,6 @@ public interface StateDSLPackage extends EPackage
     EClass STATE = eINSTANCE.getState();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.statedsl.stateDSL.impl.ConditionImpl <em>Condition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.statedsl.stateDSL.impl.ConditionImpl
-     * @see org.xtext.example.statedsl.stateDSL.impl.StateDSLPackageImpl#getCondition()
-     * @generated
-     */
-    EClass CONDITION = eINSTANCE.getCondition();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONDITION__NAME = eINSTANCE.getCondition_Name();
-
-    /**
      * The meta object literal for the '{@link org.xtext.example.statedsl.stateDSL.impl.TransitionImpl <em>Transition</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -612,6 +746,60 @@ public interface StateDSLPackage extends EPackage
      * @generated
      */
     EReference TRANSITION__CONDITION = eINSTANCE.getTransition_Condition();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.statedsl.stateDSL.impl.ConditionImpl <em>Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.statedsl.stateDSL.impl.ConditionImpl
+     * @see org.xtext.example.statedsl.stateDSL.impl.StateDSLPackageImpl#getCondition()
+     * @generated
+     */
+    EClass CONDITION = eINSTANCE.getCondition();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONDITION__NAME = eINSTANCE.getCondition_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION__LEFT = eINSTANCE.getCondition_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION__RIGHT = eINSTANCE.getCondition_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.statedsl.stateDSL.impl.OrConditionImpl <em>Or Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.statedsl.stateDSL.impl.OrConditionImpl
+     * @see org.xtext.example.statedsl.stateDSL.impl.StateDSLPackageImpl#getOrCondition()
+     * @generated
+     */
+    EClass OR_CONDITION = eINSTANCE.getOrCondition();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.statedsl.stateDSL.impl.AndConditionImpl <em>And Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.statedsl.stateDSL.impl.AndConditionImpl
+     * @see org.xtext.example.statedsl.stateDSL.impl.StateDSLPackageImpl#getAndCondition()
+     * @generated
+     */
+    EClass AND_CONDITION = eINSTANCE.getAndCondition();
 
   }
 

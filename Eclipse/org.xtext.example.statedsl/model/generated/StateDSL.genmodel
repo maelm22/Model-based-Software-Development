@@ -18,14 +18,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateDSL.ecore#//AState/name"/>
     </genClasses>
     <genClasses ecoreClass="StateDSL.ecore#//State"/>
-    <genClasses ecoreClass="StateDSL.ecore#//Condition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateDSL.ecore#//Condition/name"/>
-    </genClasses>
     <genClasses ecoreClass="StateDSL.ecore#//Transition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateDSL.ecore#//Transition/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateDSL.ecore#//Transition/from"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateDSL.ecore#//Transition/to"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateDSL.ecore#//Transition/condition"/>
     </genClasses>
+    <genClasses ecoreClass="StateDSL.ecore#//Condition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateDSL.ecore#//Condition/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateDSL.ecore#//Condition/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateDSL.ecore#//Condition/right"/>
+    </genClasses>
+    <genClasses ecoreClass="StateDSL.ecore#//OrCondition"/>
+    <genClasses ecoreClass="StateDSL.ecore#//AndCondition"/>
   </genPackages>
 </genmodel:GenModel>

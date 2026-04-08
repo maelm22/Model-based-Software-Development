@@ -15,8 +15,10 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.statedsl.services.StateDSLGrammarAccess;
+import org.xtext.example.statedsl.stateDSL.AndCondition;
 import org.xtext.example.statedsl.stateDSL.Condition;
 import org.xtext.example.statedsl.stateDSL.Domainmodel;
+import org.xtext.example.statedsl.stateDSL.OrCondition;
 import org.xtext.example.statedsl.stateDSL.State;
 import org.xtext.example.statedsl.stateDSL.StateDSLPackage;
 import org.xtext.example.statedsl.stateDSL.StateMachine;
@@ -36,11 +38,17 @@ public class StateDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == StateDSLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case StateDSLPackage.AND_CONDITION:
+				sequence_AndCondition(context, (AndCondition) semanticObject); 
+				return; 
 			case StateDSLPackage.CONDITION:
-				sequence_Condition(context, (Condition) semanticObject); 
+				sequence_LiteralCondition(context, (Condition) semanticObject); 
 				return; 
 			case StateDSLPackage.DOMAINMODEL:
 				sequence_Domainmodel(context, (Domainmodel) semanticObject); 
+				return; 
+			case StateDSLPackage.OR_CONDITION:
+				sequence_OrCondition(context, (OrCondition) semanticObject); 
 				return; 
 			case StateDSLPackage.STATE:
 				sequence_State(context, (State) semanticObject); 
@@ -59,19 +67,27 @@ public class StateDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Condition returns Condition
+	 *     Condition returns AndCondition
+	 *     OrCondition returns AndCondition
+	 *     OrCondition.OrCondition_1_0 returns AndCondition
+	 *     AndCondition returns AndCondition
+	 *     AndCondition.AndCondition_1_0 returns AndCondition
+	 *     PrimaryCondition returns AndCondition
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     (left=AndCondition_AndCondition_1_0 right=PrimaryCondition)
 	 * </pre>
 	 */
-	protected void sequence_Condition(ISerializationContext context, Condition semanticObject) {
+	protected void sequence_AndCondition(ISerializationContext context, AndCondition semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, StateDSLPackage.Literals.CONDITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StateDSLPackage.Literals.CONDITION__NAME));
+			if (transientValues.isValueTransient(semanticObject, StateDSLPackage.Literals.CONDITION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StateDSLPackage.Literals.CONDITION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, StateDSLPackage.Literals.CONDITION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StateDSLPackage.Literals.CONDITION__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConditionAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getAndConditionAccess().getAndConditionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getAndConditionAccess().getRightPrimaryConditionParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -87,6 +103,60 @@ public class StateDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 */
 	protected void sequence_Domainmodel(ISerializationContext context, Domainmodel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Condition returns Condition
+	 *     OrCondition returns Condition
+	 *     OrCondition.OrCondition_1_0 returns Condition
+	 *     AndCondition returns Condition
+	 *     AndCondition.AndCondition_1_0 returns Condition
+	 *     PrimaryCondition returns Condition
+	 *     LiteralCondition returns Condition
+	 *
+	 * Constraint:
+	 *     name=ID
+	 * </pre>
+	 */
+	protected void sequence_LiteralCondition(ISerializationContext context, Condition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, StateDSLPackage.Literals.CONDITION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StateDSLPackage.Literals.CONDITION__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLiteralConditionAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Condition returns OrCondition
+	 *     OrCondition returns OrCondition
+	 *     OrCondition.OrCondition_1_0 returns OrCondition
+	 *     AndCondition returns OrCondition
+	 *     AndCondition.AndCondition_1_0 returns OrCondition
+	 *     PrimaryCondition returns OrCondition
+	 *
+	 * Constraint:
+	 *     (left=OrCondition_OrCondition_1_0 right=AndCondition)
+	 * </pre>
+	 */
+	protected void sequence_OrCondition(ISerializationContext context, OrCondition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, StateDSLPackage.Literals.CONDITION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StateDSLPackage.Literals.CONDITION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, StateDSLPackage.Literals.CONDITION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StateDSLPackage.Literals.CONDITION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOrConditionAccess().getOrConditionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getOrConditionAccess().getRightAndConditionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	

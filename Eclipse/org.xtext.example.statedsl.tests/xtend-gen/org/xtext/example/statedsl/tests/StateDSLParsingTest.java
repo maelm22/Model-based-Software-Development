@@ -3,12 +3,12 @@
  */
 package org.xtext.example.statedsl.tests;
 
-import com.google.inject.Inject;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.extensions.InjectionExtension;
-import org.eclipse.xtext.testing.util.ParseHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+import com.google.inject.Inject;
 
 @ExtendWith(InjectionExtension.class)
 @InjectWith(StateDSLInjectorProvider.class)

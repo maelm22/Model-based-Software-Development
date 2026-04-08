@@ -44,10 +44,5 @@ public interface AState extends EObject
    * @generated
    */
   void setName(String value);
-  
-  
-  
-  
-  
 
 } // AState

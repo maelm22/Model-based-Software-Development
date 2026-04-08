@@ -3,11 +3,12 @@
  */
 package org.xtext.example.statedsl.ide;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import org.eclipse.xtext.util.Modules2;
 import org.xtext.example.statedsl.StateDSLRuntimeModule;
 import org.xtext.example.statedsl.StateDSLStandaloneSetup;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 /**
  * Initialization support for running Xtext languages as language servers.

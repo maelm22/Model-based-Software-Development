@@ -60,6 +60,15 @@ public interface StateDSLFactory extends EFactory
   State createState();
 
   /**
+   * Returns a new object of class '<em>Transition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Transition</em>'.
+   * @generated
+   */
+  Transition createTransition();
+
+  /**
    * Returns a new object of class '<em>Condition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -69,13 +78,22 @@ public interface StateDSLFactory extends EFactory
   Condition createCondition();
 
   /**
-   * Returns a new object of class '<em>Transition</em>'.
+   * Returns a new object of class '<em>Or Condition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Transition</em>'.
+   * @return a new object of class '<em>Or Condition</em>'.
    * @generated
    */
-  Transition createTransition();
+  OrCondition createOrCondition();
+
+  /**
+   * Returns a new object of class '<em>And Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>And Condition</em>'.
+   * @generated
+   */
+  AndCondition createAndCondition();
 
   /**
    * Returns the package supported by this factory.

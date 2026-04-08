@@ -10,6 +10,8 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
+import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 import org.xtext.example.statedsl.services.StateDSLGrammarAccess;
@@ -18,10 +20,14 @@ import org.xtext.example.statedsl.services.StateDSLGrammarAccess;
 public class StateDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected StateDSLGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_PrimaryCondition_LeftParenthesisKeyword_1_0_a;
+	protected AbstractElementAlias match_PrimaryCondition_LeftParenthesisKeyword_1_0_p;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (StateDSLGrammarAccess) access;
+		match_PrimaryCondition_LeftParenthesisKeyword_1_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryConditionAccess().getLeftParenthesisKeyword_1_0());
+		match_PrimaryCondition_LeftParenthesisKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryConditionAccess().getLeftParenthesisKeyword_1_0());
 	}
 	
 	@Override
@@ -36,8 +42,43 @@ public class StateDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			acceptNodes(getLastNavigableState(), syntaxNodes);
+			if (match_PrimaryCondition_LeftParenthesisKeyword_1_0_a.equals(syntax))
+				emit_PrimaryCondition_LeftParenthesisKeyword_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PrimaryCondition_LeftParenthesisKeyword_1_0_p.equals(syntax))
+				emit_PrimaryCondition_LeftParenthesisKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     '('*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) name=ID
+	 *     (rule start) (ambiguity) {AndCondition.left=}
+	 *     (rule start) (ambiguity) {OrCondition.left=}
+	 
+	 * </pre>
+	 */
+	protected void emit_PrimaryCondition_LeftParenthesisKeyword_1_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     '('+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) {AndCondition.left=}
+	 *     (rule start) (ambiguity) {OrCondition.left=}
+	 
+	 * </pre>
+	 */
+	protected void emit_PrimaryCondition_LeftParenthesisKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 }

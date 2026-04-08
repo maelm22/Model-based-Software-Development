@@ -12,29 +12,45 @@ StateMachine:
         'start' '=' start=State
     '}';
 
-
-
-    
     
 AState:
 	State | StateMachine
 ;    
 
+
 State:
-   'State' name=ID
-    
-    ;
+   'State' name=ID;
 
-Condition:
-    'Condition' name=ID 
     
-    
-    
-    ;
-
 Transition:
     'Transition' name=ID '{' 
         'from' '=' from=AState 
         'to' '=' to=AState 
         'condition' '=' condition=Condition 
-    '}';
+    '}';    
+
+
+Condition:
+    OrCondition 
+;
+
+
+OrCondition returns Condition:
+    AndCondition ({OrCondition.left=current} 'OR' right=AndCondition)*  
+;
+
+
+AndCondition returns Condition:
+    PrimaryCondition ({AndCondition.left=current} 'AND' right=PrimaryCondition)*  
+;
+
+
+PrimaryCondition returns Condition:     // here when you are making your tree, you find out if the branch is done "lit-condition"
+    LiteralCondition |					// or is hiding a new branch in the ()  condition -> or-condition -> and-condition
+    '(' Condition ')'
+;  
+
+
+LiteralCondition returns Condition:     // X, Y, isReady :: type conditions, "singular" no and/or involved
+	name = ID;
+

@@ -103,6 +103,13 @@ public class StateDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case StateDSLPackage.TRANSITION:
+      {
+        Transition transition = (Transition)theEObject;
+        T result = caseTransition(transition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case StateDSLPackage.CONDITION:
       {
         Condition condition = (Condition)theEObject;
@@ -110,10 +117,19 @@ public class StateDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case StateDSLPackage.TRANSITION:
+      case StateDSLPackage.OR_CONDITION:
       {
-        Transition transition = (Transition)theEObject;
-        T result = caseTransition(transition);
+        OrCondition orCondition = (OrCondition)theEObject;
+        T result = caseOrCondition(orCondition);
+        if (result == null) result = caseCondition(orCondition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case StateDSLPackage.AND_CONDITION:
+      {
+        AndCondition andCondition = (AndCondition)theEObject;
+        T result = caseAndCondition(andCondition);
+        if (result == null) result = caseCondition(andCondition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -186,6 +202,22 @@ public class StateDSLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Transition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Transition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTransition(Transition object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Condition</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -202,17 +234,33 @@ public class StateDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Transition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Or Condition</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Transition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Or Condition</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTransition(Transition object)
+  public T caseOrCondition(OrCondition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>And Condition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>And Condition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAndCondition(AndCondition object)
   {
     return null;
   }

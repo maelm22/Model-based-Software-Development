@@ -324,55 +324,6 @@ ruleState returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='{'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_2());
-		}
-		otherlv_3='}'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getStateAccess().getRightCurlyBracketKeyword_3());
-		}
-	)
-;
-
-// Entry rule entryRuleCondition
-entryRuleCondition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getConditionRule()); }
-	iv_ruleCondition=ruleCondition
-	{ $current=$iv_ruleCondition.current; }
-	EOF;
-
-// Rule Condition
-ruleCondition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='Condition'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getConditionAccess().getConditionKeyword_0());
-		}
-		(
-			(
-				lv_name_1_0=RULE_ID
-				{
-					newLeafNode(lv_name_1_0, grammarAccess.getConditionAccess().getNameIDTerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getConditionRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"name",
-						lv_name_1_0,
-						"org.eclipse.xtext.common.Terminals.ID");
-				}
-			)
-		)
 	)
 ;
 
@@ -503,6 +454,230 @@ ruleTransition returns [EObject current=null]
 		{
 			newLeafNode(otherlv_12, grammarAccess.getTransitionAccess().getRightCurlyBracketKeyword_12());
 		}
+	)
+;
+
+// Entry rule entryRuleCondition
+entryRuleCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConditionRule()); }
+	iv_ruleCondition=ruleCondition
+	{ $current=$iv_ruleCondition.current; }
+	EOF;
+
+// Rule Condition
+ruleCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	{
+		newCompositeNode(grammarAccess.getConditionAccess().getOrConditionParserRuleCall());
+	}
+	this_OrCondition_0=ruleOrCondition
+	{
+		$current = $this_OrCondition_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
+
+// Entry rule entryRuleOrCondition
+entryRuleOrCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOrConditionRule()); }
+	iv_ruleOrCondition=ruleOrCondition
+	{ $current=$iv_ruleOrCondition.current; }
+	EOF;
+
+// Rule OrCondition
+ruleOrCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getOrConditionAccess().getAndConditionParserRuleCall_0());
+		}
+		this_AndCondition_0=ruleAndCondition
+		{
+			$current = $this_AndCondition_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					$current = forceCreateModelElementAndSet(
+						grammarAccess.getOrConditionAccess().getOrConditionLeftAction_1_0(),
+						$current);
+				}
+			)
+			otherlv_2='OR'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getOrConditionAccess().getORKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getOrConditionAccess().getRightAndConditionParserRuleCall_1_2_0());
+					}
+					lv_right_3_0=ruleAndCondition
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getOrConditionRule());
+						}
+						set(
+							$current,
+							"right",
+							lv_right_3_0,
+							"org.xtext.example.statedsl.StateDSL.AndCondition");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleAndCondition
+entryRuleAndCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAndConditionRule()); }
+	iv_ruleAndCondition=ruleAndCondition
+	{ $current=$iv_ruleAndCondition.current; }
+	EOF;
+
+// Rule AndCondition
+ruleAndCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getAndConditionAccess().getPrimaryConditionParserRuleCall_0());
+		}
+		this_PrimaryCondition_0=rulePrimaryCondition
+		{
+			$current = $this_PrimaryCondition_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					$current = forceCreateModelElementAndSet(
+						grammarAccess.getAndConditionAccess().getAndConditionLeftAction_1_0(),
+						$current);
+				}
+			)
+			otherlv_2='AND'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getAndConditionAccess().getANDKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAndConditionAccess().getRightPrimaryConditionParserRuleCall_1_2_0());
+					}
+					lv_right_3_0=rulePrimaryCondition
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAndConditionRule());
+						}
+						set(
+							$current,
+							"right",
+							lv_right_3_0,
+							"org.xtext.example.statedsl.StateDSL.PrimaryCondition");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+// Entry rule entryRulePrimaryCondition
+entryRulePrimaryCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPrimaryConditionRule()); }
+	iv_rulePrimaryCondition=rulePrimaryCondition
+	{ $current=$iv_rulePrimaryCondition.current; }
+	EOF;
+
+// Rule PrimaryCondition
+rulePrimaryCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getPrimaryConditionAccess().getLiteralConditionParserRuleCall_0());
+		}
+		this_LiteralCondition_0=ruleLiteralCondition
+		{
+			$current = $this_LiteralCondition_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		(
+			otherlv_1='('
+			{
+				newLeafNode(otherlv_1, grammarAccess.getPrimaryConditionAccess().getLeftParenthesisKeyword_1_0());
+			}
+			{
+				newCompositeNode(grammarAccess.getPrimaryConditionAccess().getConditionParserRuleCall_1_1());
+			}
+			this_Condition_2=ruleCondition
+			{
+				$current = $this_Condition_2.current;
+				afterParserOrEnumRuleCall();
+			}
+			otherlv_3=')'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getPrimaryConditionAccess().getRightParenthesisKeyword_1_2());
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleLiteralCondition
+entryRuleLiteralCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLiteralConditionRule()); }
+	iv_ruleLiteralCondition=ruleLiteralCondition
+	{ $current=$iv_ruleLiteralCondition.current; }
+	EOF;
+
+// Rule LiteralCondition
+ruleLiteralCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_name_0_0=RULE_ID
+			{
+				newLeafNode(lv_name_0_0, grammarAccess.getLiteralConditionAccess().getNameIDTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getLiteralConditionRule());
+				}
+				setWithLastConsumed(
+					$current,
+					"name",
+					lv_name_0_0,
+					"org.eclipse.xtext.common.Terminals.ID");
+			}
+		)
 	)
 ;
 

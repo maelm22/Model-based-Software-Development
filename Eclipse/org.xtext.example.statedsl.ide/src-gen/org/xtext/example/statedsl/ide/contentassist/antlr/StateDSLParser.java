@@ -32,21 +32,28 @@ public class StateDSLParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, StateDSLGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getAStateAccess().getAlternatives(), "rule__AState__Alternatives");
+			builder.put(grammarAccess.getPrimaryConditionAccess().getAlternatives(), "rule__PrimaryCondition__Alternatives");
 			builder.put(grammarAccess.getStateMachineAccess().getGroup(), "rule__StateMachine__Group__0");
 			builder.put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
-			builder.put(grammarAccess.getConditionAccess().getGroup(), "rule__Condition__Group__0");
 			builder.put(grammarAccess.getTransitionAccess().getGroup(), "rule__Transition__Group__0");
+			builder.put(grammarAccess.getOrConditionAccess().getGroup(), "rule__OrCondition__Group__0");
+			builder.put(grammarAccess.getOrConditionAccess().getGroup_1(), "rule__OrCondition__Group_1__0");
+			builder.put(grammarAccess.getAndConditionAccess().getGroup(), "rule__AndCondition__Group__0");
+			builder.put(grammarAccess.getAndConditionAccess().getGroup_1(), "rule__AndCondition__Group_1__0");
+			builder.put(grammarAccess.getPrimaryConditionAccess().getGroup_1(), "rule__PrimaryCondition__Group_1__0");
 			builder.put(grammarAccess.getDomainmodelAccess().getElementsAssignment(), "rule__Domainmodel__ElementsAssignment");
 			builder.put(grammarAccess.getStateMachineAccess().getNameAssignment_1(), "rule__StateMachine__NameAssignment_1");
 			builder.put(grammarAccess.getStateMachineAccess().getStatesAssignment_6(), "rule__StateMachine__StatesAssignment_6");
 			builder.put(grammarAccess.getStateMachineAccess().getTransitionsAssignment_12(), "rule__StateMachine__TransitionsAssignment_12");
 			builder.put(grammarAccess.getStateMachineAccess().getStartAssignment_17(), "rule__StateMachine__StartAssignment_17");
 			builder.put(grammarAccess.getStateAccess().getNameAssignment_1(), "rule__State__NameAssignment_1");
-			builder.put(grammarAccess.getConditionAccess().getNameAssignment_1(), "rule__Condition__NameAssignment_1");
 			builder.put(grammarAccess.getTransitionAccess().getNameAssignment_1(), "rule__Transition__NameAssignment_1");
 			builder.put(grammarAccess.getTransitionAccess().getFromAssignment_5(), "rule__Transition__FromAssignment_5");
 			builder.put(grammarAccess.getTransitionAccess().getToAssignment_8(), "rule__Transition__ToAssignment_8");
 			builder.put(grammarAccess.getTransitionAccess().getConditionAssignment_11(), "rule__Transition__ConditionAssignment_11");
+			builder.put(grammarAccess.getOrConditionAccess().getRightAssignment_1_2(), "rule__OrCondition__RightAssignment_1_2");
+			builder.put(grammarAccess.getAndConditionAccess().getRightAssignment_1_2(), "rule__AndCondition__RightAssignment_1_2");
+			builder.put(grammarAccess.getLiteralConditionAccess().getNameAssignment(), "rule__LiteralCondition__NameAssignment");
 		}
 	}
 	

@@ -96,14 +96,24 @@ public class StateDSLAdapterFactory extends AdapterFactoryImpl
         return createStateAdapter();
       }
       @Override
+      public Adapter caseTransition(Transition object)
+      {
+        return createTransitionAdapter();
+      }
+      @Override
       public Adapter caseCondition(Condition object)
       {
         return createConditionAdapter();
       }
       @Override
-      public Adapter caseTransition(Transition object)
+      public Adapter caseOrCondition(OrCondition object)
       {
-        return createTransitionAdapter();
+        return createOrConditionAdapter();
+      }
+      @Override
+      public Adapter caseAndCondition(AndCondition object)
+      {
+        return createAndConditionAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -188,6 +198,21 @@ public class StateDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.statedsl.stateDSL.Transition <em>Transition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.statedsl.stateDSL.Transition
+   * @generated
+   */
+  public Adapter createTransitionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.statedsl.stateDSL.Condition <em>Condition</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -203,16 +228,31 @@ public class StateDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.statedsl.stateDSL.Transition <em>Transition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.statedsl.stateDSL.OrCondition <em>Or Condition</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.statedsl.stateDSL.Transition
+   * @see org.xtext.example.statedsl.stateDSL.OrCondition
    * @generated
    */
-  public Adapter createTransitionAdapter()
+  public Adapter createOrConditionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.statedsl.stateDSL.AndCondition <em>And Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.statedsl.stateDSL.AndCondition
+   * @generated
+   */
+  public Adapter createAndConditionAdapter()
   {
     return null;
   }

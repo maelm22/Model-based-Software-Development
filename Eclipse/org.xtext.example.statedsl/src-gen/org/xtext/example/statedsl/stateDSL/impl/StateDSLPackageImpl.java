@@ -11,8 +11,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.statedsl.stateDSL.AState;
+import org.xtext.example.statedsl.stateDSL.AndCondition;
 import org.xtext.example.statedsl.stateDSL.Condition;
 import org.xtext.example.statedsl.stateDSL.Domainmodel;
+import org.xtext.example.statedsl.stateDSL.OrCondition;
 import org.xtext.example.statedsl.stateDSL.State;
 import org.xtext.example.statedsl.stateDSL.StateDSLFactory;
 import org.xtext.example.statedsl.stateDSL.StateDSLPackage;
@@ -60,6 +62,13 @@ public class StateDSLPackageImpl extends EPackageImpl implements StateDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass transitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass conditionEClass = null;
 
   /**
@@ -67,7 +76,14 @@ public class StateDSLPackageImpl extends EPackageImpl implements StateDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass transitionEClass = null;
+  private EClass orConditionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass andConditionEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -236,28 +252,6 @@ public class StateDSLPackageImpl extends EPackageImpl implements StateDSLPackage
    * @generated
    */
   @Override
-  public EClass getCondition()
-  {
-    return conditionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getCondition_Name()
-  {
-    return (EAttribute)conditionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getTransition()
   {
     return transitionEClass;
@@ -313,6 +307,72 @@ public class StateDSLPackageImpl extends EPackageImpl implements StateDSLPackage
    * @generated
    */
   @Override
+  public EClass getCondition()
+  {
+    return conditionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCondition_Name()
+  {
+    return (EAttribute)conditionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCondition_Left()
+  {
+    return (EReference)conditionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCondition_Right()
+  {
+    return (EReference)conditionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getOrCondition()
+  {
+    return orConditionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAndCondition()
+  {
+    return andConditionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public StateDSLFactory getStateDSLFactory()
   {
     return (StateDSLFactory)getEFactoryInstance();
@@ -351,14 +411,20 @@ public class StateDSLPackageImpl extends EPackageImpl implements StateDSLPackage
 
     stateEClass = createEClass(STATE);
 
-    conditionEClass = createEClass(CONDITION);
-    createEAttribute(conditionEClass, CONDITION__NAME);
-
     transitionEClass = createEClass(TRANSITION);
     createEAttribute(transitionEClass, TRANSITION__NAME);
     createEReference(transitionEClass, TRANSITION__FROM);
     createEReference(transitionEClass, TRANSITION__TO);
     createEReference(transitionEClass, TRANSITION__CONDITION);
+
+    conditionEClass = createEClass(CONDITION);
+    createEAttribute(conditionEClass, CONDITION__NAME);
+    createEReference(conditionEClass, CONDITION__LEFT);
+    createEReference(conditionEClass, CONDITION__RIGHT);
+
+    orConditionEClass = createEClass(OR_CONDITION);
+
+    andConditionEClass = createEClass(AND_CONDITION);
   }
 
   /**
@@ -392,6 +458,8 @@ public class StateDSLPackageImpl extends EPackageImpl implements StateDSLPackage
     // Add supertypes to classes
     stateMachineEClass.getESuperTypes().add(this.getAState());
     stateEClass.getESuperTypes().add(this.getAState());
+    orConditionEClass.getESuperTypes().add(this.getCondition());
+    andConditionEClass.getESuperTypes().add(this.getCondition());
 
     // Initialize classes and features; add operations and parameters
     initEClass(domainmodelEClass, Domainmodel.class, "Domainmodel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -407,14 +475,20 @@ public class StateDSLPackageImpl extends EPackageImpl implements StateDSLPackage
 
     initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCondition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTransition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTransition_From(), this.getAState(), null, "from", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTransition_To(), this.getAState(), null, "to", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTransition_Condition(), this.getCondition(), null, "condition", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCondition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCondition_Left(), this.getCondition(), null, "left", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCondition_Right(), this.getCondition(), null, "right", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(orConditionEClass, OrCondition.class, "OrCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(andConditionEClass, AndCondition.class, "AndCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

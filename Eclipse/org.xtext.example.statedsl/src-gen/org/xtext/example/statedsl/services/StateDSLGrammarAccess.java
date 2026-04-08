@@ -6,6 +6,7 @@ package org.xtext.example.statedsl.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
+import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Grammar;
@@ -174,48 +175,16 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Keyword cStateKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//State:
-		//   'State' name=ID '{'   '}'
-		//    ;
+		//   'State' name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'State' name=ID '{'   '}'
+		//'State' name=ID
 		public Group getGroup() { return cGroup; }
 		
 		//'State'
 		public Keyword getStateKeyword_0() { return cStateKeyword_0; }
-		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
-	}
-	public class ConditionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.statedsl.StateDSL.Condition");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cConditionKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		
-		//Condition:
-		//    'Condition' name=ID ;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'Condition' name=ID
-		public Group getGroup() { return cGroup; }
-		
-		//'Condition'
-		public Keyword getConditionKeyword_0() { return cConditionKeyword_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -310,14 +279,156 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
 	}
+	public class ConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.statedsl.StateDSL.Condition");
+		private final RuleCall cOrConditionParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//Condition:
+		//    OrCondition
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//OrCondition
+		public RuleCall getOrConditionParserRuleCall() { return cOrConditionParserRuleCall; }
+	}
+	public class OrConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.statedsl.StateDSL.OrCondition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cAndConditionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cOrConditionLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cORKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightAndConditionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		//OrCondition returns Condition:
+		//    AndCondition ({OrCondition.left=current} 'OR' right=AndCondition)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//AndCondition ({OrCondition.left=current} 'OR' right=AndCondition)*
+		public Group getGroup() { return cGroup; }
+		
+		//AndCondition
+		public RuleCall getAndConditionParserRuleCall_0() { return cAndConditionParserRuleCall_0; }
+		
+		//({OrCondition.left=current} 'OR' right=AndCondition)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{OrCondition.left=current}
+		public Action getOrConditionLeftAction_1_0() { return cOrConditionLeftAction_1_0; }
+		
+		//'OR'
+		public Keyword getORKeyword_1_1() { return cORKeyword_1_1; }
+		
+		//right=AndCondition
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//AndCondition
+		public RuleCall getRightAndConditionParserRuleCall_1_2_0() { return cRightAndConditionParserRuleCall_1_2_0; }
+	}
+	public class AndConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.statedsl.StateDSL.AndCondition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cPrimaryConditionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cAndConditionLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cANDKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightPrimaryConditionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		//AndCondition returns Condition:
+		//    PrimaryCondition ({AndCondition.left=current} 'AND' right=PrimaryCondition)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//PrimaryCondition ({AndCondition.left=current} 'AND' right=PrimaryCondition)*
+		public Group getGroup() { return cGroup; }
+		
+		//PrimaryCondition
+		public RuleCall getPrimaryConditionParserRuleCall_0() { return cPrimaryConditionParserRuleCall_0; }
+		
+		//({AndCondition.left=current} 'AND' right=PrimaryCondition)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{AndCondition.left=current}
+		public Action getAndConditionLeftAction_1_0() { return cAndConditionLeftAction_1_0; }
+		
+		//'AND'
+		public Keyword getANDKeyword_1_1() { return cANDKeyword_1_1; }
+		
+		//right=PrimaryCondition
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//PrimaryCondition
+		public RuleCall getRightPrimaryConditionParserRuleCall_1_2_0() { return cRightPrimaryConditionParserRuleCall_1_2_0; }
+	}
+	public class PrimaryConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.statedsl.StateDSL.PrimaryCondition");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cLiteralConditionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cConditionParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		
+		//PrimaryCondition returns Condition:     // here when you are making your tree, you find out if the branch is done "lit-condition"
+		//    LiteralCondition |                    // or is hiding a new branch in the ()  condition -> or-condition -> and-condition
+		//    '(' Condition ')'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		// // here when you are making your tree, you find out if the branch is done "lit-condition"
+		//LiteralCondition |                    // or is hiding a new branch in the ()  condition -> or-condition -> and-condition
+		//'(' Condition ')'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		// // here when you are making your tree, you find out if the branch is done "lit-condition"
+		//LiteralCondition
+		public RuleCall getLiteralConditionParserRuleCall_0() { return cLiteralConditionParserRuleCall_0; }
+		
+		//                // or is hiding a new branch in the ()  condition -> or-condition -> and-condition
+		//'(' Condition ')'
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//                // or is hiding a new branch in the ()  condition -> or-condition -> and-condition
+		//'('
+		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
+		
+		//Condition
+		public RuleCall getConditionParserRuleCall_1_1() { return cConditionParserRuleCall_1_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
+	}
+	public class LiteralConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.statedsl.StateDSL.LiteralCondition");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//LiteralCondition returns Condition:     // X, Y, isReady :: type conditions, "singular" no and/or involved
+		//    name = ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		// // X, Y, isReady :: type conditions, "singular" no and/or involved
+		//name = ID
+		public Assignment getNameAssignment() { return cNameAssignment; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
+	}
 	
 	
 	private final DomainmodelElements pDomainmodel;
 	private final StateMachineElements pStateMachine;
 	private final AStateElements pAState;
 	private final StateElements pState;
-	private final ConditionElements pCondition;
 	private final TransitionElements pTransition;
+	private final ConditionElements pCondition;
+	private final OrConditionElements pOrCondition;
+	private final AndConditionElements pAndCondition;
+	private final PrimaryConditionElements pPrimaryCondition;
+	private final LiteralConditionElements pLiteralCondition;
 	
 	private final Grammar grammar;
 	
@@ -332,8 +443,12 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pStateMachine = new StateMachineElements();
 		this.pAState = new AStateElements();
 		this.pState = new StateElements();
-		this.pCondition = new ConditionElements();
 		this.pTransition = new TransitionElements();
+		this.pCondition = new ConditionElements();
+		this.pOrCondition = new OrConditionElements();
+		this.pAndCondition = new AndConditionElements();
+		this.pPrimaryCondition = new PrimaryConditionElements();
+		this.pLiteralCondition = new LiteralConditionElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -399,24 +514,13 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//State:
-	//   'State' name=ID '{'   '}'
-	//    ;
+	//   'State' name=ID;
 	public StateElements getStateAccess() {
 		return pState;
 	}
 	
 	public ParserRule getStateRule() {
 		return getStateAccess().getRule();
-	}
-	
-	//Condition:
-	//    'Condition' name=ID ;
-	public ConditionElements getConditionAccess() {
-		return pCondition;
-	}
-	
-	public ParserRule getConditionRule() {
-		return getConditionAccess().getRule();
 	}
 	
 	//Transition:
@@ -431,6 +535,61 @@ public class StateDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getTransitionRule() {
 		return getTransitionAccess().getRule();
+	}
+	
+	//Condition:
+	//    OrCondition
+	//;
+	public ConditionElements getConditionAccess() {
+		return pCondition;
+	}
+	
+	public ParserRule getConditionRule() {
+		return getConditionAccess().getRule();
+	}
+	
+	//OrCondition returns Condition:
+	//    AndCondition ({OrCondition.left=current} 'OR' right=AndCondition)*
+	//;
+	public OrConditionElements getOrConditionAccess() {
+		return pOrCondition;
+	}
+	
+	public ParserRule getOrConditionRule() {
+		return getOrConditionAccess().getRule();
+	}
+	
+	//AndCondition returns Condition:
+	//    PrimaryCondition ({AndCondition.left=current} 'AND' right=PrimaryCondition)*
+	//;
+	public AndConditionElements getAndConditionAccess() {
+		return pAndCondition;
+	}
+	
+	public ParserRule getAndConditionRule() {
+		return getAndConditionAccess().getRule();
+	}
+	
+	//PrimaryCondition returns Condition:     // here when you are making your tree, you find out if the branch is done "lit-condition"
+	//    LiteralCondition |                    // or is hiding a new branch in the ()  condition -> or-condition -> and-condition
+	//    '(' Condition ')'
+	//;
+	public PrimaryConditionElements getPrimaryConditionAccess() {
+		return pPrimaryCondition;
+	}
+	
+	public ParserRule getPrimaryConditionRule() {
+		return getPrimaryConditionAccess().getRule();
+	}
+	
+	//LiteralCondition returns Condition:     // X, Y, isReady :: type conditions, "singular" no and/or involved
+	//    name = ID;
+	public LiteralConditionElements getLiteralConditionAccess() {
+		return pLiteralCondition;
+	}
+	
+	public ParserRule getLiteralConditionRule() {
+		return getLiteralConditionAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
