@@ -3,29 +3,69 @@
  */
 package org.xtext.example.statedsl.validation
 
-
 import org.eclipse.xtext.validation.Check
+import org.xtext.example.statedsl.stateDSL.StateMachine
+import org.xtext.example.statedsl.stateDSL.Transition
+import org.xtext.example.statedsl.stateDSL.StateDSLPackage
 
-/**
- * This class contains custom validation rules. 
- *
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
- */
 class StateDSLValidator extends AbstractStateDSLValidator {
-	
-//	public static val INVALID_NAME = 'invalidName'
-public static val INVALID_INHERITANCE = 'invalidINHERITANCE'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					StateDSLPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
 
+    public static val DUPLICATE_STATE_NAME      = 'duplicateStateName'
+    public static val DUPLICATE_TRANSITION_NAME = 'duplicateTransitionName'
+    public static val SELF_LOOP_TRANSITION      = 'selfLoopTransition'
+    public static val UNREACHABLE_STATE         = 'unreachableState'
 
+    @Check
+    def checkNoDuplicateStateNames(StateMachine machine) {
+        val seen = newHashSet
+        for (var i = 0; i < machine.states.size; i++) {
+            val state = machine.states.get(i)
+            if (!seen.add(state.name)) {
+                error('Duplicate state name: "' + state.name + '"',
+                    machine, StateDSLPackage.Literals.STATE_MACHINE__STATES, i,
+                    DUPLICATE_STATE_NAME)
+            }
+        }
+    }
 
-	
+    @Check
+    def checkNoDuplicateTransitionNames(StateMachine machine) {
+        val seen = newHashSet
+        for (var i = 0; i < machine.transitions.size; i++) {
+            val transition = machine.transitions.get(i)
+            if (!seen.add(transition.name)) {
+                error('Duplicate transition name: "' + transition.name + '"',
+                    machine, StateDSLPackage.Literals.STATE_MACHINE__TRANSITIONS, i,
+                    DUPLICATE_TRANSITION_NAME)
+            }
+        }
+    }
+
+    @Check
+    def checkSelfLoopTransition(Transition transition) {
+        if (transition.from !== null && transition.to !== null
+                && transition.from === transition.to) {
+            warning('Transition "' + transition.name + '" is a self-loop (from and to are the same state)',
+                transition, StateDSLPackage.Literals.TRANSITION__FROM,
+                SELF_LOOP_TRANSITION)
+        }
+    }
+
+    @Check
+    def checkUnreachableStates(StateMachine machine) {
+        if (machine.start === null) return
+        val reachable = newHashSet
+        reachable.add(machine.start)
+        for (t : machine.transitions) {
+            if (t.to !== null) reachable.add(t.to)
+        }
+        for (var i = 0; i < machine.states.size; i++) {
+            val state = machine.states.get(i)
+            if (!reachable.contains(state)) {
+                warning('State "' + state.name + '" is unreachable (no transition leads to it)',
+                    machine, StateDSLPackage.Literals.STATE_MACHINE__STATES, i,
+                    UNREACHABLE_STATE)
+            }
+        }
+    }
 }

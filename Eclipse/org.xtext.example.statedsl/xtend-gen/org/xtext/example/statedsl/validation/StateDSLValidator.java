@@ -3,12 +3,104 @@
  */
 package org.xtext.example.statedsl.validation;
 
-/**
- * This class contains custom validation rules.
- * 
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
- */
+import java.util.HashSet;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.xtext.example.statedsl.stateDSL.AState;
+import org.xtext.example.statedsl.stateDSL.StateDSLPackage;
+import org.xtext.example.statedsl.stateDSL.StateMachine;
+import org.xtext.example.statedsl.stateDSL.Transition;
+
 @SuppressWarnings("all")
 public class StateDSLValidator extends AbstractStateDSLValidator {
-  public static final String INVALID_INHERITANCE = "invalidINHERITANCE";
+  public static final String DUPLICATE_STATE_NAME = "duplicateStateName";
+
+  public static final String DUPLICATE_TRANSITION_NAME = "duplicateTransitionName";
+
+  public static final String SELF_LOOP_TRANSITION = "selfLoopTransition";
+
+  public static final String UNREACHABLE_STATE = "unreachableState";
+
+  @Check
+  public void checkNoDuplicateStateNames(final StateMachine machine) {
+    final HashSet<String> seen = CollectionLiterals.<String>newHashSet();
+    for (int i = 0; (i < machine.getStates().size()); i++) {
+      {
+        final AState state = machine.getStates().get(i);
+        boolean _add = seen.add(state.getName());
+        boolean _not = (!_add);
+        if (_not) {
+          String _name = state.getName();
+          String _plus = ("Duplicate state name: \"" + _name);
+          String _plus_1 = (_plus + "\"");
+          this.error(_plus_1, machine, StateDSLPackage.Literals.STATE_MACHINE__STATES, i, 
+            StateDSLValidator.DUPLICATE_STATE_NAME);
+        }
+      }
+    }
+  }
+
+  @Check
+  public void checkNoDuplicateTransitionNames(final StateMachine machine) {
+    final HashSet<String> seen = CollectionLiterals.<String>newHashSet();
+    for (int i = 0; (i < machine.getTransitions().size()); i++) {
+      {
+        final Transition transition = machine.getTransitions().get(i);
+        boolean _add = seen.add(transition.getName());
+        boolean _not = (!_add);
+        if (_not) {
+          String _name = transition.getName();
+          String _plus = ("Duplicate transition name: \"" + _name);
+          String _plus_1 = (_plus + "\"");
+          this.error(_plus_1, machine, StateDSLPackage.Literals.STATE_MACHINE__TRANSITIONS, i, 
+            StateDSLValidator.DUPLICATE_TRANSITION_NAME);
+        }
+      }
+    }
+  }
+
+  @Check
+  public void checkSelfLoopTransition(final Transition transition) {
+    if ((((transition.getFrom() != null) && (transition.getTo() != null)) && (transition.getFrom() == transition.getTo()))) {
+      String _name = transition.getName();
+      String _plus = ("Transition \"" + _name);
+      String _plus_1 = (_plus + "\" is a self-loop (from and to are the same state)");
+      this.warning(_plus_1, transition, StateDSLPackage.Literals.TRANSITION__FROM, 
+        StateDSLValidator.SELF_LOOP_TRANSITION);
+    }
+  }
+
+  @Check
+  public void checkUnreachableStates(final StateMachine machine) {
+    org.xtext.example.statedsl.stateDSL.State _start = machine.getStart();
+    boolean _tripleEquals = (_start == null);
+    if (_tripleEquals) {
+      return;
+    }
+    final HashSet<AState> reachable = CollectionLiterals.<AState>newHashSet();
+    reachable.add(machine.getStart());
+    EList<Transition> _transitions = machine.getTransitions();
+    for (final Transition t : _transitions) {
+      AState _to = t.getTo();
+      boolean _tripleNotEquals = (_to != null);
+      if (_tripleNotEquals) {
+        reachable.add(t.getTo());
+      }
+    }
+    for (int i = 0; (i < machine.getStates().size()); i++) {
+      {
+        final AState state = machine.getStates().get(i);
+        boolean _contains = reachable.contains(state);
+        boolean _not = (!_contains);
+        if (_not) {
+          String _name = state.getName();
+          String _plus = ("State \"" + _name);
+          String _plus_1 = (_plus + "\" is unreachable (no transition leads to it)");
+          this.warning(_plus_1, machine, StateDSLPackage.Literals.STATE_MACHINE__STATES, i, 
+            StateDSLValidator.UNREACHABLE_STATE);
+        }
+      }
+    }
+  }
 }

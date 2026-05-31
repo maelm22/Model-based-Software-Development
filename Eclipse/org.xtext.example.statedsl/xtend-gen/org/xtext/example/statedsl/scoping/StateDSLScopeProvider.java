@@ -3,12 +3,26 @@
  */
 package org.xtext.example.statedsl.scoping;
 
-/**
- * This class contains custom scoping description.
- * 
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
- * on how and when to use it.
- */
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.Scopes;
+import org.xtext.example.statedsl.stateDSL.StateMachine;
+import org.xtext.example.statedsl.stateDSL.Transition;
+
 @SuppressWarnings("all")
 public class StateDSLScopeProvider extends AbstractStateDSLScopeProvider {
+  public IScope scope_Transition_from(final Transition transition, final EReference ref) {
+    EObject _eContainer = transition.eContainer();
+    return Scopes.scopeFor(((StateMachine) _eContainer).getStates());
+  }
+
+  public IScope scope_Transition_to(final Transition transition, final EReference ref) {
+    EObject _eContainer = transition.eContainer();
+    return Scopes.scopeFor(((StateMachine) _eContainer).getStates());
+  }
+
+  public IScope scope_StateMachine_start(final StateMachine machine, final EReference ref) {
+    return Scopes.scopeFor(machine.getStates());
+  }
 }

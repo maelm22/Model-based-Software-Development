@@ -9,25 +9,25 @@ StateMachine:
     'StateMachine' name=ID '{' 
         'states' '=' '[' states+=(AState)+ ']' ','
         'transitions' '=' '[' transitions+=(Transition)* ']' ','
-        'start' '=' start=State
+        'start' '=' start=[AState]
     '}';
 
-    
+
 AState:
 	State | StateMachine
-;    
+;
 
 
 State:
    'State' name=ID;
 
-    
+
 Transition:
-    'Transition' name=ID '{' 
-        'from' '=' from=AState 
-        'to' '=' to=AState 
-        'condition' '=' condition=Condition 
-    '}';    
+    'Transition' name=ID '{'
+        'from' '=' from=[AState]
+        'to' '=' to=[AState]
+        'condition' '=' condition=Condition
+    '}';
 
 
 Condition:
